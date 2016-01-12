@@ -88,7 +88,7 @@
     <td>55</td>
   </tr>
   <tr>
-    <td>H</td>
+    <td>1</td>
     <td>56</td>
     <td>57</td>
     <td>58</td>
