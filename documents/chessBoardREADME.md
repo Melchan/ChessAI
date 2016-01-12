@@ -11,6 +11,11 @@ From move count indicator we can determine is it black or white turn.
 Will tell if it is possible to make enPassant move on this turn.
 This indicator is here for the draw rules. 
 
+
+
+
+
+
 #Chess Piece explanation.
 
 ##Three basic groups
