@@ -1,10 +1,101 @@
-| § | A | B | C | D | E | F | G | H |
-| - | - | - | - | - | - | - | - | - |
-| 8 | 0 | 8 | 16 | 24 | 32 | 40 | 48 | 56 |
-| 7 | 1 | 9 | 17 | 25 | 33 | 41 | 49 | 57 |
-| 6 | 2 | 10 | 18 | 26 | 34 | 42 | 50 | 58 |
-| 5 | 3 | 11 | 19 | 27 | 35 | 43 | 51 | 59 |
-| 4 | 4 | 12 | 20 | 28 | 36 | 44 | 52 | 60 |
-| 3 | 5 | 13 | 21 | 29 | 37 | 45 | 53 | 61 |
-| 2 | 6 | 14 | 22 | 30 | 38 | 46 | 54 | 62 |
-| 1 | 7 | 15 | 23 | 31 | 39 | 47 | 55 | 63 |
+<table border="1" style="width:100%">
+  <tr>
+    <td></td>
+    <td>8</td> 
+    <td>7</td>
+    <td>6</td>
+    <td>5</td>
+    <td>4</td>
+    <td>3</td>
+    <td>2</td>
+    <td>1</td>
+  </tr>
+  <tr>
+    <td>A</td>
+    <td>0</td>
+    <td>1</td>
+    <td>2</td>
+    <td>3</td>
+    <td>4</td>
+    <td>5</td>
+    <td>6</td>
+    <td>7</td>
+  </tr>
+  <tr>
+    <td>B</td>
+    <td>8</td>
+    <td>9</td>
+    <td>10</td>
+    <td>11</td>
+    <td>12</td>
+    <td>13</td>
+    <td>14</td>
+    <td>15</td>
+  </tr>
+  <tr>
+    <td>C</td>
+    <td>16</td>
+    <td>17</td>
+    <td>18</td>
+    <td>19</td>
+    <td>20</td>
+    <td>21</td>
+    <td>22</td>
+    <td>23</td>
+  </tr>
+  <tr>
+    <td>D</td>
+    <td>25</td>
+    <td>26</td>
+    <td>27</td>
+    <td>28</td>
+    <td>29</td>
+    <td>30</td>
+    <td>31</td>
+    <td>32</td>
+  </tr>
+  <tr>
+    <td>E</td>
+    <td>34</td>
+    <td>35</td>
+    <td>36</td>
+    <td>37</td>
+    <td>38</td>
+    <td>39</td>
+    <td>40</td>
+    <td>41</td>
+  </tr>
+  <tr>
+    <td>F</td>
+    <td>43</td>
+    <td>44</td>
+    <td>45</td>
+    <td>46</td>
+    <td>47</td>
+    <td>48</td>
+    <td>49</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>G</td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>H</td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+</table>
