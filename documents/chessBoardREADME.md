@@ -4,15 +4,13 @@
 Coordinates for chess pieces on board. 
 
 ##Index 64:
-Indicator how many moves has been made.
-From move count indicator we can determine is it black or white turn.
+Indicator who has the turn to move
+**white turn** 0
+**black turn** 1
 
 ##Index 65:
 Will tell if it is possible to make enPassant move on this turn.
 This indicator is here for the draw rules. 
-
-
-
 
 
 
