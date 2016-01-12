@@ -14,22 +14,17 @@ This indicator is here for the draw rules.
 #Chess Piece explanation.
 
 ##Three basic groups
-empty square:
-0
+**empty square:** 0
 
-white pieces:
-1 - 12
+**white pieces:** 1 - 12
 
-black pieces:
-13 - 24
+**black pieces:** 13 - 24
 
 ##Information about piece status. 
 
-even numbers:
-chess piece has not moved during game.
+**even numbers:** chess piece has not moved during game.
 
-odd numbers:
-chess piece has moved during game.
+**odd numbers:** chess piece has moved during game.
 
 ##Pieces by number.
 
