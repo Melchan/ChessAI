@@ -1,17 +1,17 @@
 <table border="1" style="width:100%">
   <tr>
     <td></td>
-    <td>8</td> 
-    <td>7</td>
-    <td>6</td>
-    <td>5</td>
-    <td>4</td>
-    <td>3</td>
-    <td>2</td>
-    <td>1</td>
+    <td>A</td> 
+    <td>B</td>
+    <td>C</td>
+    <td>D</td>
+    <td>E</td>
+    <td>F</td>
+    <td>G</td>
+    <td>H</td>
   </tr>
   <tr>
-    <td>A</td>
+    <td>8</td>
     <td>0</td>
     <td>1</td>
     <td>2</td>
@@ -22,7 +22,7 @@
     <td>7</td>
   </tr>
   <tr>
-    <td>B</td>
+    <td>7</td>
     <td>8</td>
     <td>9</td>
     <td>10</td>
@@ -33,7 +33,7 @@
     <td>15</td>
   </tr>
   <tr>
-    <td>C</td>
+    <td>6</td>
     <td>16</td>
     <td>17</td>
     <td>18</td>
@@ -44,58 +44,58 @@
     <td>23</td>
   </tr>
   <tr>
-    <td>D</td>
+    <td>5</td>
+    <td>24</td>
     <td>25</td>
     <td>26</td>
     <td>27</td>
     <td>28</td>
-    <td>29</td>
+    <td>39</td>
     <td>30</td>
     <td>31</td>
-    <td>32</td>
   </tr>
   <tr>
-    <td>E</td>
+    <td>4</td>
+    <td>32</td>
+    <td>33</td>
     <td>34</td>
     <td>35</td>
     <td>36</td>
     <td>37</td>
     <td>38</td>
     <td>39</td>
-    <td>40</td>
-    <td>41</td>
   </tr>
   <tr>
-    <td>F</td>
+    <td>3</td>
+    <td>40</td>
+    <td>41</td>
+    <td>42</td>
     <td>43</td>
     <td>44</td>
     <td>45</td>
     <td>46</td>
     <td>47</td>
-    <td>48</td>
-    <td>49</td>
-    <td></td>
   </tr>
   <tr>
-    <td>G</td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
+    <td>2</td>
+    <td>48</td>
+    <td>49</td>
+    <td>50</td>
+    <td>51</td>
+    <td>52</td>
+    <td>53</td>
+    <td>54</td>
+    <td>55</td>
   </tr>
   <tr>
     <td>H</td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
+    <td>56</td>
+    <td>57</td>
+    <td>58</td>
+    <td>59</td>
+    <td>60</td>
+    <td>61</td>
+    <td>62</td>
+    <td>63</td>
   </tr>
 </table>
