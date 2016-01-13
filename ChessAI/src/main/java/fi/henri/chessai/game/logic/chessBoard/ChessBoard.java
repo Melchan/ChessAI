@@ -34,7 +34,6 @@ public class ChessBoard {
         this.translator = new ChessBoardTranslator();
     }
 
-    // ABOVE ^
     /**
      * method will empty board and history.
      */
@@ -54,7 +53,7 @@ public class ChessBoard {
      * @return Color BLACK or WHITE
      */
     public Color getTurn() {
-        if (board[64] % 2 == 0) {
+        if (board[64] == 0) {
             return WHITE;
         } else {
             return BLACK;
@@ -83,10 +82,10 @@ public class ChessBoard {
     public int coordinatesToIndex(int[] c) {
         return -((c[1] - 7) * 8) + c[0];
     }
-    
+
     /**
-     * method can place "empty" piece or chess piece in square. pieces are 1-24
-     * see documentation for more info.
+     * method can only place pieces on board. Pieces are 1-24 see documentation
+     * for more info.
      *
      * @param p
      * @param i
@@ -103,7 +102,7 @@ public class ChessBoard {
     }
 
     private boolean allowedPiece(char p) {
-        return 0 < p && p > 65;
+        return 0 < p && p < 25;
     }
 
     private boolean allowedCoordinateIndex(int i) {
@@ -117,11 +116,12 @@ public class ChessBoard {
      *
      * @param actor
      * @param target
-     * @return true if action is made
+     * @return false if starting square is empty or there is coordinante that is
+     * not on board.
      */
     public boolean attemptToMovePiece(int actor, int target) {
-        char piece = board[actor];
         if (allowedCoordinateIndex(actor)) {
+            char piece = board[actor];
             if (piece != 0 && allowedPiece(piece)) {
                 saveCurrentBoardPositionToHistory();
                 attemptToPlacePiece(piece, target);
@@ -130,7 +130,6 @@ public class ChessBoard {
                 setEnPassant(false);
                 changeTurn();
                 return true;
-
             }
         }
         return false;
@@ -176,7 +175,9 @@ public class ChessBoard {
      * @return Color of chess piece
      */
     public Color pieceColor(char piece) {
-        if (0 < piece && piece < 13) {
+        if (piece == 0) {
+            return YELLOW;
+        } else if (piece < 13) {
             return WHITE;
         } else if (piece < 25) {
             return BLACK;
@@ -200,32 +201,67 @@ public class ChessBoard {
     /**
      * Method turns clock backwards and replaces current board position with
      * earlier one. At the same time it will erase earlier moves from memory.
-     * 
+     *
      * @param n
      * @return false if trying to revert more than possible.
      */
     public boolean rollBack(int n) {
         int lenght = boardHistory.size();
-        if (lenght < n) {
+        if (lenght >= n) {
             this.board = this.boardHistory.get(lenght - n).toCharArray();
             eraseHistory(n);
             return true;
         }
         return false;
     }
-    
+
     private void eraseHistory(int n) {
-        for (int i = 1; i <= n ; i++) {
-            this.boardHistory.remove(boardHistory.size() - i);
+        for (int i = 0; i < n; i++) {
+            this.boardHistory.remove(boardHistory.size() - 1);
         }
     }
-    
+
     /**
      * will return enum translation of the ChessPieces characters.
+     *
      * @param c
      * @return enum ChessPiece
      */
     public ChessPiece boardCharToChessPiece(char c) {
         return translator.translate(c);
+    }
+
+    /**
+     * Method will tell what is in square.
+     *
+     * @param n
+     * @return 6000 if given coordinate is not on board;
+     */
+    public char getSquareContent(int n) {
+        if (this.allowedCoordinateIndex(n)) {
+            return this.board[n];
+        }
+        return 6000;
+    }
+
+    /**
+     * method will return if there is change to make enPassant on this turn.
+     *
+     * @return
+     */
+    public boolean getEnPassantChange() {
+        if (board[65] == 1) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    
+    public boolean hasPieceMovedInSquare(int i) {
+        if (board[i] % 2 == 0) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }
