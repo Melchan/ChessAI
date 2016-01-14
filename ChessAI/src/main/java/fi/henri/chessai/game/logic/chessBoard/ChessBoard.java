@@ -104,8 +104,14 @@ public class ChessBoard {
     private boolean allowedPiece(char p) {
         return 0 < p && p < 25;
     }
+    
+    /**
+     * Will tell if coordinateIndex is on chess board.
+     * @param i
+     * @return true if coordinateIndex is on board.
+     */
 
-    private boolean allowedCoordinateIndex(int i) {
+    public boolean allowedCoordinateIndex(int i) {
         return 0 <= i && i < 64;
     }
 
@@ -123,13 +129,16 @@ public class ChessBoard {
         if (allowedCoordinateIndex(actor)) {
             char piece = board[actor];
             if (piece != 0 && allowedPiece(piece)) {
-                saveCurrentBoardPositionToHistory();
-                attemptToPlacePiece(piece, target);
-                setPieceToMoved(target);
-                attemptToEmptySquare(actor);
-                setEnPassant(false);
-                changeTurn();
-                return true;
+                if (getTurn() == pieceColor(piece)) {
+                    saveCurrentBoardPositionToHistory();
+                    attemptToPlacePiece(piece, target);
+                    setPieceToMoved(target);
+                    attemptToEmptySquare(actor);
+                    setEnPassant(false);
+                    changeTurn();
+                    return true;
+                }
+
             }
         }
         return false;
@@ -161,9 +170,16 @@ public class ChessBoard {
         }
     }
 
-    private void setPieceToMoved(int i) {
-        if (this.board[i] % 2 == 1) {
-            this.board[i]++;
+    /**
+     * Piece int chosen location is changed to status moved.
+     *
+     * @param i
+     */
+    public void setPieceToMoved(int i) {
+        if (this.allowedPiece(board[i])) {
+            if (this.board[i] % 2 == 1) {
+                this.board[i]++;
+            }
         }
     }
 
@@ -256,12 +272,13 @@ public class ChessBoard {
             return false;
         }
     }
+
     /**
      * method will tell if chessPiece has moved to this index.
+     *
      * @param i index which is to be inspected.
      * @return true if piece has moved during game.
      */
-    
     public boolean hasPieceMovedInSquare(int i) {
         if (board[i] % 2 == 0) {
             return true;

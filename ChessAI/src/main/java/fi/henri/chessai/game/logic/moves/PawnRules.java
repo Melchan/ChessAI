@@ -5,10 +5,21 @@
  */
 package fi.henri.chessai.game.logic.moves;
 
+import fi.henri.chessai.game.logic.chessBoard.ChessBoard;
+
 /**
  *
  * @author manhenri
  */
-public class PawnRules {
-    
+public class PawnRules extends PieceMovement {
+
+    public PawnRules(ChessBoard board) {
+        super(board);
+    }
+
+    @Override
+    protected boolean commitIfMoveIsLegal(int actor, int target) {
+        return false;
+    }
+
 }
