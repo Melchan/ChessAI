@@ -227,7 +227,7 @@ public class ChessBoard {
      * @param c
      * @return enum ChessPiece
      */
-    public ChessPiece boardCharToChessPiece(char c) {
+    public ChessPieces boardCharToChessPiece(char c) {
         return translator.translate(c);
     }
 
@@ -256,6 +256,11 @@ public class ChessBoard {
             return false;
         }
     }
+    /**
+     * method will tell if chessPiece has moved to this index.
+     * @param i index which is to be inspected.
+     * @return true if piece has moved during game.
+     */
     
     public boolean hasPieceMovedInSquare(int i) {
         if (board[i] % 2 == 0) {

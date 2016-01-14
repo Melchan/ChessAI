@@ -5,7 +5,7 @@
  */
 package fi.henri.chessai.game.logic.chessBoard;
 
-import static fi.henri.chessai.game.logic.chessBoard.ChessPiece.*;
+import static fi.henri.chessai.game.logic.chessBoard.ChessPieces.*;
 import org.junit.Before;
 
 import org.junit.Test;
