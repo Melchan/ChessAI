@@ -104,13 +104,13 @@ public class ChessBoard {
     private boolean allowedPiece(char p) {
         return 0 < p && p < 25;
     }
-    
+
     /**
      * Will tell if coordinateIndex is on chess board.
+     *
      * @param i
      * @return true if coordinateIndex is on board.
      */
-
     public boolean allowedCoordinateIndex(int i) {
         return 0 <= i && i < 64;
     }
@@ -134,7 +134,7 @@ public class ChessBoard {
                     attemptToPlacePiece(piece, target);
                     setPieceToMoved(target);
                     attemptToEmptySquare(actor);
-                    setEnPassant(false);
+                    setEnPassant(0);
                     changeTurn();
                     return true;
                 }
@@ -203,15 +203,12 @@ public class ChessBoard {
     }
 
     /**
-     * method will set enPassantPossible to parameter. This method exists for
-     * draw of threefold repetition.
+     * method will set enPassantPossible to certain location. It is set by
+     * PawnRules Class when after march move it detects it can be eaten with en
+     * passant.
      */
-    public void setEnPassant(boolean indicator) {
-        if (indicator) {
-            board[65] = 1;
-        } else {
-            board[65] = 0;
-        }
+    public void setEnPassant(int location) {
+        board[65] = (char) location;
     }
 
     /**
@@ -261,16 +258,14 @@ public class ChessBoard {
     }
 
     /**
-     * method will return if there is change to make enPassant on this turn.
+     * Method will return 0 if there is no en passant change this turn. If there
+     * is en passant change this turn. Method will return location of the pawn
+     * that marched last turn.
      *
-     * @return
+     * @return 0 if no en passant change
      */
-    public boolean getEnPassantChange() {
-        if (board[65] == 1) {
-            return true;
-        } else {
-            return false;
-        }
+    public int getEnPassantChange() {
+        return board[65];
     }
 
     /**
@@ -286,4 +281,5 @@ public class ChessBoard {
             return false;
         }
     }
+
 }

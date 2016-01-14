@@ -15,12 +15,13 @@ import org.junit.Test;
  * @author manhenri
  */
 public class RookRulesTest {
+
     private ChessBoard board;
     private RookRules rRules;
     private char w;
     private char b;
-    
-    @Before 
+
+    @Before
     public void setUp() {
         this.board = new ChessBoard();
         this.rRules = new RookRules(board);
@@ -29,27 +30,35 @@ public class RookRulesTest {
         this.board.attemptToPlacePiece(w, 27);
         this.board.attemptToPlacePiece(b, 28);
     }
-    
+
     @Test
     public void rookCanMoveHorizontally() {
         assertEquals(true, rRules.commitIfMoveIsLegal(27, 24));
         assertEquals(true, rRules.commitIfMoveIsLegal(28, 31));
     }
-    
+
     @Test
     public void rookCanMoveVertically() {
         assertEquals(true, rRules.commitIfMoveIsLegal(27, 3));
         assertEquals(true, rRules.commitIfMoveIsLegal(28, 60));
     }
-    
+
     @Test
     public void rookCanNotMoveHorizontallyWhenSomethingIsBlocking() {
         assertEquals(false, rRules.commitIfMoveIsLegal(27, 31));
     }
-    
+
     @Test
     public void rookCanNotMoveVerticallyIfSomethingIsBlocking() {
         board.attemptToPlacePiece(w, 36);
         assertEquals(false, rRules.commitIfMoveIsLegal(36, 4));
+    }
+
+    @Test
+    public void rookCannotMoveDiagonally() {
+        assertEquals(false, rRules.commitIfMoveIsLegal(27, 0));
+        assertEquals(false, rRules.commitIfMoveIsLegal(28, 56));
+        assertEquals(false, rRules.commitIfMoveIsLegal(27, 6));
+        assertEquals(false, rRules.commitIfMoveIsLegal(28, 55));
     }
 }

@@ -203,22 +203,22 @@ public class ChessBoardTest {
     }
 
     @Test
-    public void enPassantIsNormallyFalse() {
-        assertEquals(false, board.getEnPassantChange());
+    public void enPassantIsNormallyZero() {
+        assertEquals(0, board.getEnPassantChange());
     }
 
     @Test
     public void enPassantWillBeTrueIfSetTrue() {
-        board.setEnPassant(true);
-        assertEquals(true, board.getEnPassantChange());
+        board.setEnPassant(30);
+        assertEquals(30, board.getEnPassantChange());
     }
 
     @Test
     public void enPassantWillGoFalseAfterEveryMove() {
-        board.setEnPassant(true);
+        board.setEnPassant(30);
         board.attemptToPlacePiece(w, 20);
         board.attemptToMovePiece(20, 40);
-        assertEquals(false, board.getEnPassantChange());
+        assertEquals(0, board.getEnPassantChange());
     }
 
     @Test

@@ -28,11 +28,10 @@ public class RookRules extends PieceMovement {
     }
 
     private boolean allowedRookMovement(int actor, int target) {
-        int[] a = super.getBoard().indexToCoordinates(actor);
-        int[] t = super.getBoard().indexToCoordinates(target);
+        int[] change = super.differenceBetweenTwoPoints(actor, target);
 
-        int xChange = Math.abs(a[0] - t[0]);
-        int yChange = Math.abs(a[1] - t[1]);
+        int xChange = change[0];
+        int yChange = change[1];
 
         return xChange == 0 || yChange == 0;
     }

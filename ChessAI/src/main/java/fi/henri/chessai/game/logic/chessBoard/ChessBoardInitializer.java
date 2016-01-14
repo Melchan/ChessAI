@@ -56,8 +56,8 @@ public class ChessBoardInitializer {
     }
 
     private void setQueensOnBoard() {
-        char w = 9;
-        char b = 21;
+        char w = 10;
+        char b = 22;
         board.attemptToPlacePiece(w, 59);
         board.attemptToPlacePiece(b, 3);
     }
@@ -96,25 +96,25 @@ public class ChessBoardInitializer {
     }
 
     private void setWhiteKnights() {
-        char p = 5;
+        char p = 6;
         board.attemptToPlacePiece(p, 57);
         board.attemptToPlacePiece(p, 62);
     }
 
     private void setBlackKnights() {
-        char p = 17;
+        char p = 18;
         board.attemptToPlacePiece(p, 1);
         board.attemptToPlacePiece(p, 6);
     }
 
     private void setWhiteBishops() {
-        char p = 7;
+        char p = 8;
         board.attemptToPlacePiece(p, 58);
         board.attemptToPlacePiece(p, 61);
     }
 
     private void setBlackBishops() {
-        char p = 19;
+        char p = 20;
         board.attemptToPlacePiece(p, 2);
         board.attemptToPlacePiece(p, 5);
     }

@@ -19,7 +19,23 @@ public class BishopRules extends PieceMovement {
 
     @Override
     protected boolean commitIfMoveIsLegal(int actor, int target) {
+        if (allowedBishopMovement(actor, target)) {
+            if (super.pathClear(actor, target)) {
+                return super.getBoard().attemptToMovePiece(actor, target);
+            }
+        }
         return false;
     }
 
+    private boolean allowedBishopMovement(int actor, int target) {
+        int[] change = super.differenceBetweenTwoPoints(actor, target);
+
+        int xChange = change[0];
+        int yChange = change[1];
+        
+        if (yChange == 0) {
+            return false;
+        }
+        return xChange / yChange == 1;
+    }
 }

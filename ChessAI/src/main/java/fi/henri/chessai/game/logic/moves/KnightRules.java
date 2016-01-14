@@ -19,7 +19,18 @@ public class KnightRules extends PieceMovement {
 
     @Override
     protected boolean commitIfMoveIsLegal(int actor, int target) {
+        if (allowedKnightMovement(actor, target)) {
+            return super.getBoard().attemptToMovePiece(actor, target);
+        }
         return false;
     }
 
+    private boolean allowedKnightMovement(int actor, int target) {
+        int[] change = super.differenceBetweenTwoPoints(actor, target);
+
+        int xChange = change[0];
+        int yChange = change[1];
+
+        return xChange == 2 && yChange == 1 || xChange == 1 && yChange == 2;
+    }
 }

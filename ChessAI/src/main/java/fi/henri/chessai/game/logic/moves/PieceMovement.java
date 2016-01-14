@@ -6,6 +6,7 @@
 package fi.henri.chessai.game.logic.moves;
 
 import fi.henri.chessai.game.logic.chessBoard.ChessBoard;
+import static fi.henri.chessai.game.logic.chessBoard.ChessPieces.NOTCHESSPIECE;
 
 /**
  *
@@ -29,7 +30,6 @@ public abstract class PieceMovement {
      */
     public boolean movePiece(int actor, int target) {
         if (this.allowedParameters(actor, target)) {
-            System.out.println("not allowed parameter");
             if (this.isPieceEnemy(actor, target)) {
                 return commitIfMoveIsLegal(actor, target);
             }
@@ -47,16 +47,16 @@ public abstract class PieceMovement {
     protected abstract boolean commitIfMoveIsLegal(int actor, int target);
 
     /**
-     * Method will check if target square hosts an enemy.
+     * Method will check if target square hosts friend empty squares are
+     * considered as an enemy.
      *
      * @param actor
      * @param target
      * @return false if target is friend
      */
-    private boolean isPieceEnemy(int actor, int target) {
+    protected boolean isPieceEnemy(int actor, int target) {
         char a = board.getSquareContent(actor);
         char t = board.getSquareContent(target);
-        System.out.println(board.pieceColor(a) + " " + board.pieceColor(t));
 
         return board.pieceColor(a) != board.pieceColor(t);
     }
@@ -101,7 +101,7 @@ public abstract class PieceMovement {
 
         while (a[0] != t[0] || a[1] != t[1]) {
             int i = board.coordinatesToIndex(a);
-            if (someoneIsBlocking(i)) {
+            if (squareIsOccupied(i)) {
                 return false;
             }
             a[0] = changeToOneCloserToTarget(a[0], t[0]);
@@ -122,11 +122,33 @@ public abstract class PieceMovement {
         }
         return a;
     }
-    
-    private boolean someoneIsBlocking(int target) {
-        if (board.getSquareContent(target) != 0) {
-            return true;
-        }
-        return false;
+
+    /**
+     * Method will tell if square is empty or not.
+     *
+     * @param target
+     * @return false if square is empty.
+     */
+    protected boolean squareIsOccupied(int target) {
+        char c = board.getSquareContent(target);
+        return board.boardCharToChessPiece(c) != NOTCHESSPIECE;
+    }
+
+    /**
+     * Will give out how much x and y axis will change between moves.
+     *
+     * @param actor
+     * @param target
+     * @return result[0] = xChange result[1] = yChange
+     */
+    protected int[] differenceBetweenTwoPoints(int actor, int target) {
+        int[] result = new int[2];
+        int[] a = board.indexToCoordinates(actor);
+        int[] t = board.indexToCoordinates(target);
+
+        result[0] = Math.abs(a[0] - t[0]);
+        result[1] = Math.abs(a[1] - t[1]);
+
+        return result;
     }
 }

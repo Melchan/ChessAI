@@ -79,78 +79,78 @@ public class ChessBoardInitializerTest {
     }
 
     @Test
-    public void whiteKnightsAreOnTheirPlaceAndUnMoven() {
+    public void whiteKnightsAreOnTheirPlaceAndMoven() {
         int[] c = {1, 0};
         int l = board.coordinatesToIndex(c);
         char p = board.getSquareContent(l);
         assertEquals(WHITEKNIGHT, board.boardCharToChessPiece(p));
-        assertEquals(false, board.hasPieceMovedInSquare(l));
+        assertEquals(true, board.hasPieceMovedInSquare(l));
         
         int[] a = {6, 0};
         int b = board.coordinatesToIndex(a);
         char x = board.getSquareContent(b);
         assertEquals(WHITEKNIGHT, board.boardCharToChessPiece(x));
-        assertEquals(false, board.hasPieceMovedInSquare(b));
+        assertEquals(true, board.hasPieceMovedInSquare(b));
     }
 
     @Test
-    public void blackKnightsAreOnTheirPlaceAndUnMoven() {
+    public void blackKnightsAreOnTheirPlaceAndMoven() {
         int[] c = {1, 7};
         int l = board.coordinatesToIndex(c);
         char p = board.getSquareContent(l);
         assertEquals(BLACKKNIGHT, board.boardCharToChessPiece(p));
-        assertEquals(false, board.hasPieceMovedInSquare(l));
+        assertEquals(true, board.hasPieceMovedInSquare(l));
         
         int[] a = {6, 7};
         int b = board.coordinatesToIndex(a);
         char x = board.getSquareContent(b);
         assertEquals(BLACKKNIGHT, board.boardCharToChessPiece(x));
-        assertEquals(false, board.hasPieceMovedInSquare(b));
+        assertEquals(true, board.hasPieceMovedInSquare(b));
     }
 
     @Test
-    public void whiteBishopsAreOnTheirPlaceAndUnMoven() {
+    public void whiteBishopsAreOnTheirPlaceAndMoven() {
         int[] c = {2, 0};
         int l = board.coordinatesToIndex(c);
         char p = board.getSquareContent(l);
         assertEquals(WHITEBISHOP, board.boardCharToChessPiece(p));
-        assertEquals(false, board.hasPieceMovedInSquare(l));
+        assertEquals(true, board.hasPieceMovedInSquare(l));
         
         int[] a = {5, 0};
         int b = board.coordinatesToIndex(a);
         char x = board.getSquareContent(b);
         assertEquals(WHITEBISHOP, board.boardCharToChessPiece(x));
-        assertEquals(false, board.hasPieceMovedInSquare(b));
+        assertEquals(true, board.hasPieceMovedInSquare(b));
     }
 
     @Test
-    public void blackBishopsAreOnTheirPlaceAndUnMoven() {
+    public void blackBishopsAreOnTheirPlaceAndMoven() {
         int[] c = {2, 7};
         int l = board.coordinatesToIndex(c);
         char p = board.getSquareContent(l);
         assertEquals(BLACKBISHOP, board.boardCharToChessPiece(p));
-        assertEquals(false, board.hasPieceMovedInSquare(l));
+        assertEquals(true, board.hasPieceMovedInSquare(l));
         
         int[] a = {5, 7};
         int b = board.coordinatesToIndex(a);
         char x = board.getSquareContent(b);
         assertEquals(BLACKBISHOP, board.boardCharToChessPiece(x));
-        assertEquals(false, board.hasPieceMovedInSquare(b));
+        assertEquals(true, board.hasPieceMovedInSquare(b));
     }
 
     @Test
-    public void queesAreOnTheirPlaceAndUnMoven() {
+    public void queesAreOnTheirPlaceAndMoven() {
         int[] c = {3, 0};
         int l = board.coordinatesToIndex(c);
         char p = board.getSquareContent(l);
         assertEquals(WHITEQUEEN, board.boardCharToChessPiece(p));
-        assertEquals(false, board.hasPieceMovedInSquare(l));
+        assertEquals(true, board.hasPieceMovedInSquare(l));
         
         int[] a = {3, 7};
         int b = board.coordinatesToIndex(a);
         char x = board.getSquareContent(b);
         assertEquals(BLACKQUEEN, board.boardCharToChessPiece(x));
-        assertEquals(false, board.hasPieceMovedInSquare(b));
+        assertEquals(true, board.hasPieceMovedInSquare(b));
     }
 
     @Test
