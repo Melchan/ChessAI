@@ -9,7 +9,7 @@ package fi.henri.chessai.game.logic.chessBoard;
  *
  * @author manhenri
  */
-public enum ChessPieces {
+public enum ChessPiece {
 
     WHITEPAWN, WHITEROOK, WHITEKNIGHT, WHITEBISHOP, WHITEQUEEN, WHITEKING,
     BLACKPAWN, BLACKROOK, BLACKKNIGHT, BLACKBISHOP, BLACKQUEEN, BLACKKING,

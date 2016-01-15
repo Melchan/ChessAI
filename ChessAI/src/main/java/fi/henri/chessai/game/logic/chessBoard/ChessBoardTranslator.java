@@ -5,7 +5,7 @@
  */
 package fi.henri.chessai.game.logic.chessBoard;
 
-import static fi.henri.chessai.game.logic.chessBoard.ChessPieces.*;
+import static fi.henri.chessai.game.logic.chessBoard.ChessPiece.*;
 import java.util.HashMap;
 
 /**
@@ -14,10 +14,10 @@ import java.util.HashMap;
  */
 public class ChessBoardTranslator {
 
-    private HashMap<Character, ChessPieces> library;
+    private HashMap<Character, ChessPiece> library;
 
     public ChessBoardTranslator() {
-        this.library = new HashMap<Character, ChessPieces>();
+        this.library = new HashMap<Character, ChessPiece>();
         initializeLibrary();
     }
 
@@ -28,7 +28,7 @@ public class ChessBoardTranslator {
      * @param c
      * @return
      */
-    public ChessPieces translate(char c) {
+    public ChessPiece translate(char c) {
         c = changeToEvenNumber(c);
         if (0 < c && c < 25) {
             return this.library.get(c);

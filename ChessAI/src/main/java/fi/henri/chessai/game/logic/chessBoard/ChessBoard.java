@@ -240,7 +240,7 @@ public class ChessBoard {
      * @param c
      * @return enum ChessPiece
      */
-    public ChessPieces boardCharToChessPiece(char c) {
+    public ChessPiece boardCharToChessPiece(char c) {
         return translator.translate(c);
     }
 

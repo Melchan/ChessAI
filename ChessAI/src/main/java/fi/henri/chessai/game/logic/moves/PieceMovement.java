@@ -6,7 +6,7 @@
 package fi.henri.chessai.game.logic.moves;
 
 import fi.henri.chessai.game.logic.chessBoard.ChessBoard;
-import static fi.henri.chessai.game.logic.chessBoard.ChessPieces.NOTCHESSPIECE;
+import static fi.henri.chessai.game.logic.chessBoard.ChessPiece.NOTCHESSPIECE;
 
 /**
  *

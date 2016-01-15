@@ -1,8 +1,8 @@
 package fi.henri.chessai.game.logic.moves;
 
 import fi.henri.chessai.game.logic.chessBoard.ChessBoard;
-import static fi.henri.chessai.game.logic.chessBoard.ChessPieces.BLACKPAWN;
-import static fi.henri.chessai.game.logic.chessBoard.ChessPieces.WHITEPAWN;
+import static fi.henri.chessai.game.logic.chessBoard.ChessPiece.BLACKPAWN;
+import static fi.henri.chessai.game.logic.chessBoard.ChessPiece.WHITEPAWN;
 import java.awt.Color;
 import static java.awt.Color.BLACK;
 import static java.awt.Color.WHITE;
