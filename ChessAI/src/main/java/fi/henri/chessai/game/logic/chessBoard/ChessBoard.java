@@ -281,5 +281,4 @@ public class ChessBoard {
             return false;
         }
     }
-
 }
