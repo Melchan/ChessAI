@@ -161,8 +161,10 @@ public class ChessBoard {
         }
         return false;
     }
-
-    private void changeTurn() {
+    /**
+     * Method switches turns between white and black.
+     */
+    public void changeTurn() {
         if (board[64] == 0) {
             board[64] = 1;
         } else {

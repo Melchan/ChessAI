@@ -5,10 +5,23 @@
  */
 package fi.henri.chessai.game;
 
+import fi.henri.chessai.game.logic.LogicHandler;
+import fi.henri.chessai.game.ui.UI;
+
 /**
  *
  * @author manhenri
  */
 public class Game {
+    private LogicHandler handler;
+    private UI ui;
     
+    public Game() {
+        this.handler = new LogicHandler();
+        this.ui = new UI(handler);
+    }
+    
+    public void run() {
+        ui.run();
+    }
 }
