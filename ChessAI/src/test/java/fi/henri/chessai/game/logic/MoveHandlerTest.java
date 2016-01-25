@@ -100,4 +100,14 @@ public class MoveHandlerTest {
             assertEquals(0, board.getSquareContent(i));
         }
     }
+    
+    @Test
+    public void threatenersAreSavedCorrectlyIfSomeOneIsTryingToMoveWhenKingIsThreatened() {
+        this.board.attemptToPlacePiece(wKing, 60);
+        this.board.attemptToPlacePiece(wRook, 56);
+        this.board.attemptToPlacePiece(bRook, 63);
+        this.board.attemptToPlacePiece(bRook, 26);
+        handler.movePiece(56, 32);
+        assertEquals(1, handler.getTheateners().size());
+    }
 }

@@ -20,6 +20,7 @@ public class LogicHandler {
     private ChessBoardInitializer initializer;
     private MoveHandler handler;
     private CheckMateObserver observer;
+    private ArrayList<Integer> threatenersForUser;
 
     private boolean checkMate;
     private boolean draw;
@@ -56,12 +57,12 @@ public class LogicHandler {
      * @param target
      */
     public void movePiece(int actor, int target) {
-        System.out.println("i try to move them");
         if (checkMate == false) {
             if (handler.movePiece(actor, target)) {
                 validateCheckMate();
                 validateDraw();
             }
+            this.updateThreateners();
         }
     }
 
@@ -74,7 +75,11 @@ public class LogicHandler {
     }
 
     public ArrayList<Integer> getKingThreateners() {
-        return handler.getTheateners();
+        return this.threatenersForUser;
+    }
+    
+    private void updateThreateners() {
+        this.threatenersForUser = handler.getTheateners();
     }
     
     public ChessBoard getChessBoard() {

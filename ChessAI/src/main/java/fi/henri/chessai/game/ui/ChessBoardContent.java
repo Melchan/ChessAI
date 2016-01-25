@@ -30,6 +30,7 @@ public class ChessBoardContent extends JPanel implements Updatetable, MouseListe
     public ChessBoardContent(LogicHandler handler) {
         this.handler = handler;
         this.squares = new ArrayList();
+        this.kingThreateners = new ArrayList<>();
         this.setLayout(new GridLayout(8, 8));
         this.setPreferredSize(new Dimension(640, 640));
         createSquaresInArrayList();
@@ -76,6 +77,7 @@ public class ChessBoardContent extends JPanel implements Updatetable, MouseListe
     */
 
     private void updateKingThreateners() {
+        System.out.println("hei " + handler.getKingThreateners().size());
         this.kingThreateners = handler.getKingThreateners();
     }
 
