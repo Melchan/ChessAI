@@ -87,15 +87,14 @@ public class CheckMateObserverTest {
     }
     
     @Test
-    public void checkMateSimulation() {
-        board.attemptToPlacePiece(bKing, 4);
-        board.attemptToPlacePiece(bPawn, 3);
-        board.attemptToPlacePiece(bPawn, 5);
-        board.attemptToPlacePiece(bPawn, 11);
-        board.attemptToPlacePiece(bPawn, 12);
-        board.attemptToPlacePiece(wQueen, 27);
-        board.attemptToPlacePiece(wQueen, 15);
-        board.attemptToMovePiece(15, 13);
-        assertEquals(true, observer.isCheckMate());
+    public void whenKingIsThreatenedSomeOneCanComeBetweenInCloseRange() {
+                board.attemptToPlacePiece(wKing, 62);
+                board.attemptToPlacePiece(wPawn, 53);
+                board.attemptToPlacePiece(wPawn, 55);
+                board.attemptToPlacePiece(wPawn, 46);
+                board.attemptToPlacePiece(wQueen, 54);
+                board.attemptToPlacePiece(bQueen, 58);
+                board.attemptToPlacePiece(bQueen, 43);
+                assertEquals(false, observer.isCheckMate());
     }
 }

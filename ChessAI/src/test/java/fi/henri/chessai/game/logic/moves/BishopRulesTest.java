@@ -68,4 +68,11 @@ public class BishopRulesTest {
         board.attemptToPlacePiece(b, 9);
         assertEquals(false, bRules.commitIfMoveIsLegal(27, 0));
     }
+    
+    @Test 
+    public void noMagicMove() {
+        board.attemptToPlacePiece(w, 40);
+        board.attemptToPlacePiece(b, 6);
+        assertEquals(false, bRules.commitIfMoveIsLegal(40, 6));
+    }
 }

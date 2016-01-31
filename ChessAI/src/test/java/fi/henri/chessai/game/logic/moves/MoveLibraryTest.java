@@ -90,4 +90,13 @@ public class MoveLibraryTest {
     public void cantMoveEmpty() {
         assertEquals(false, library.movePiece(0, 7));
     }
+    
+    @Test
+    public void bishopMagicMoveTroubleShoot() {
+        w = 8;
+        b = 24;
+        board.attemptToPlacePiece(w, 40);
+        board.attemptToPlacePiece(b, 6);
+        assertEquals(false, library.movePiece(40, 6));
+    }
 }

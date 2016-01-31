@@ -109,4 +109,26 @@ public class MoveHandlerTest {
         handler.movePiece(56, 32);
         assertEquals(1, handler.getTheateners().size());
     }
+    
+    @Test
+    public void afterCastlingEverythingShouldBeNormal() {
+        board.attemptToPlacePiece(bRook, 7);
+        board.attemptToPlacePiece(bKing, 4);
+        board.attemptToPlacePiece(bRook, 13);
+        board.attemptToPlacePiece(bRook, 14);
+        board.attemptToPlacePiece(bRook, 15);
+        board.attemptToPlacePiece((char)8, 51);
+        assertEquals(true, handler.movePiece(51, 58));
+        assertEquals(true, handler.movePiece(4, 6));
+        assertEquals(true, handler.movePiece(58, 40));
+        assertEquals(true, handler.movePiece(5, 4));
+    }
+    
+    public void canNotCastleWhenKingMovingOverThreatSquare() {
+        board.attemptToPlacePiece(wKing, 4);
+        board.attemptToPlacePiece(bRook, 34);
+        board.attemptToPlacePiece(bRook, 35);
+        board.attemptToPlacePiece(wRook, 0);
+        assertEquals(false, handler.movePiece(4, 2));
+    }
 }

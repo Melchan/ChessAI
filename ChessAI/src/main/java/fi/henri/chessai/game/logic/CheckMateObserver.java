@@ -81,13 +81,11 @@ public class CheckMateObserver {
 
         int[] k = board.indexToCoordinates(king);
         int[] a = board.indexToCoordinates(attacker);
-        k[0] = changeToOneCloserToTarget(k[0], a[0]);
-        k[1] = changeToOneCloserToTarget(k[1], a[1]);
 
         while (k[0] != a[0] || k[1] != a[1]) {
             int i = board.coordinatesToIndex(k);
             for (int d : defenders) {
-                if (handler.movePiece(d, attacker)) {
+                if (handler.movePiece(d, i)) {
                     board.rollBack(1);
                     return false;
                 }

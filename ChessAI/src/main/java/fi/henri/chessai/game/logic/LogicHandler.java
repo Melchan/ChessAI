@@ -56,14 +56,18 @@ public class LogicHandler {
      * @param actor
      * @param target
      */
-    public void movePiece(int actor, int target) {
+    public boolean movePiece(int actor, int target) {
+        System.out.println("assertEquals(true, handler.movePiece(" + actor + ", " + target + "));");
         if (checkMate == false) {
             if (handler.movePiece(actor, target)) {
                 validateCheckMate();
                 validateDraw();
+                return true;
             }
+            
             this.updateThreateners();
         }
+        return false;
     }
 
     private void validateCheckMate() {

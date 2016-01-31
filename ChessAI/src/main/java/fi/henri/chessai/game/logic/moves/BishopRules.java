@@ -36,6 +36,6 @@ public class BishopRules extends PieceMovement {
         if (yChange == 0) {
             return false;
         }
-        return xChange / yChange == 1;
+        return (xChange / yChange == 1) && (xChange % yChange == 0);
     }
 }

@@ -46,17 +46,17 @@ public class MoveHandler {
      * @return true if move is commited.
      */
     public boolean movePiece(int actor, int target) {
-        boolean moved = board.hasPieceMovedInSquare(actor);
         if (library.movePiece(actor, target)) {
-            if (this.isKingThreatened() == false) {
-                return checkCastling(moved, actor, target);
+            if (isKingThreatened() == false) {
+                return checkCastling(actor, target);
             }
             board.rollBack(1);
         }
         return false;
     }
 
-    private boolean checkCastling(boolean moved, int actor, int target) {
+    private boolean checkCastling(int actor, int target) {
+        boolean moved = board.hasPieceMovedInSquare(actor);
         if (!moved && isKing(board.getSquareContent(actor))) {
             if (Math.abs(actor - target) > 1) {
                 if (castlingIsClear(actor, target)) {
