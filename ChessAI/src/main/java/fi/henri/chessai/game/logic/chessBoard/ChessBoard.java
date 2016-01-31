@@ -138,7 +138,6 @@ public class ChessBoard {
                     changeTurn();
                     return true;
                 }
-
             }
         }
         return false;

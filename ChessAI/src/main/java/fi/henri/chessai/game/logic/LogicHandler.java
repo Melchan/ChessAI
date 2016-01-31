@@ -41,7 +41,7 @@ public class LogicHandler {
     }
 
     /**
-     * Method will put everything on starting position.
+     * Method will put everything in starting position.
      */
     public void newGame() {
         this.checkMate = false;

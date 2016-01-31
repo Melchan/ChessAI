@@ -31,8 +31,8 @@ public class CheckMateObserver {
             if (kingCanNotMoveToSafety(king)) {
                 if (threatCount > 1) {
                     return true;
-                } else if (enemyCanNotBeEaten(attacker, defenders)) {
-
+                } else if (enemyCanBeEaten(attacker, defenders)) {
+                    return false;
                 } else {
                     return enemyCanNotBeBlocked(king, attacker, defenders);
                 }
@@ -52,13 +52,11 @@ public class CheckMateObserver {
     }
 
     private boolean kingCanNotMoveToSafety(int king) {
-        board.changeTurn();
-
         for (int x = -1; x < 2; x++) {
             for (int y = -1; y < 2; y++) {
                 int[] k = board.indexToCoordinates(king);
-                k[0] = +x;
-                k[1] = +y;
+                k[0] += x;
+                k[1] += y;
                 int target = board.coordinatesToIndex(k);
                 if (handler.movePiece(king, target)) {
                     board.rollBack(1);
@@ -69,14 +67,14 @@ public class CheckMateObserver {
         return true;
     }
 
-    private boolean enemyCanNotBeEaten(int attacker, ArrayList<Integer> defenders) {
+    private boolean enemyCanBeEaten(int attacker, ArrayList<Integer> defenders) {
         for (int d : defenders) {
             if (handler.movePiece(d, attacker)) {
                 board.rollBack(1);
-                return false;
+                return true;
             }
         }
-        return true;
+        return false;
     }
 
     private boolean enemyCanNotBeBlocked(int king, int attacker, ArrayList<Integer> defenders) {

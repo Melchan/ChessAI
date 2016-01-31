@@ -77,7 +77,6 @@ public class ChessBoardContent extends JPanel implements Updatetable, MouseListe
     */
 
     private void updateKingThreateners() {
-        System.out.println("hei " + handler.getKingThreateners().size());
         this.kingThreateners = handler.getKingThreateners();
     }
 

@@ -111,4 +111,9 @@ public class KingRulesTest {
         board.setPieceToMoved(60);
         assertEquals(false, kRules.commitIfMoveIsLegal(60, 58));
     }
+    
+    @Test
+    public void kingCannotMoveLikeSuperKnight() {
+        assertEquals(false, kRules.commitIfMoveIsLegal(63, 6));
+    }
 }

@@ -40,7 +40,7 @@ public class KingRules extends PieceMovement {
         
         if (allowedChange(xChange, yChange)) {
             return true;
-        } else if (castling(actor, target)) {
+        } else if (yChange == 0 && castling(actor, target)) {
             return true;
         }
         
@@ -57,7 +57,7 @@ public class KingRules extends PieceMovement {
     }
     
     private boolean allowedChange(int xC, int yC) {
-        return xC == 1 || yC == 1 && xC < 2 && yC < 2;
+        return (-1 < xC && xC < 2) && (-1 < yC && yC < 2);
     }
 
     private boolean castling(int actor, int target) {

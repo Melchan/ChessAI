@@ -6,7 +6,6 @@
 package fi.henri.chessai.game.logic;
 
 import fi.henri.chessai.game.logic.chessBoard.ChessBoard;
-import static java.awt.Color.BLACK;
 import static java.awt.Color.WHITE;
 import org.junit.Before;
 import org.junit.Test;

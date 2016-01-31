@@ -77,7 +77,7 @@ public class MoveHandler {
     }
 
     /**
-     * Method will see if color given in parameters has it's king threatened.
+     * Method will see if player who has moved last has it's king threatened.
      * Save threateners in arraylist. and return true.
      *
      * @param color
@@ -138,7 +138,7 @@ public class MoveHandler {
 
     /**
      *
-     * @return indexes of threateners. Noticed last time when isKingThreatened
+     * @return indexes of threats. Noticed last time when isKingThreatened
      * was Called.
      */
     public ArrayList<Integer> getTheateners() {
