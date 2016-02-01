@@ -26,6 +26,7 @@ public class KingRules extends PieceMovement {
         if (allowedKingMovement(actor, target)) {
             if (super.getBoard().attemptToMovePiece(actor, target)) {
                 commitCastlingIfNecessary();
+                changeTowerMovementStatus(actor);
                 return true;
             }
         }
@@ -91,5 +92,15 @@ public class KingRules extends PieceMovement {
             }
         }
         return false;
+    }
+
+    private void changeTowerMovementStatus(int actor) {
+        if (actor == 4) {
+            super.getBoard().setPieceToMoved(0);
+            super.getBoard().setPieceToMoved(7);
+        } else if (actor == 60) {
+            super.getBoard().setPieceToMoved(56);
+            super.getBoard().setPieceToMoved(63);
+        }
     }
 }

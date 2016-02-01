@@ -20,6 +20,7 @@ public class LogicHandler {
     private ChessBoardInitializer initializer;
     private MoveHandler handler;
     private CheckMateObserver observer;
+    private DrawObserver drawObserver;
     private ArrayList<Integer> threatenersForUser;
 
     private boolean checkMate;
@@ -35,9 +36,9 @@ public class LogicHandler {
         this.initializer = new ChessBoardInitializer(board);
         this.handler = new MoveHandler(board);
         this.observer = new CheckMateObserver(board);
-        this.checkMate = false;
-        this.draw = false;
+        this.drawObserver = new DrawObserver(board);
         this.initializer.newGame();
+        
     }
 
     /**
@@ -58,7 +59,7 @@ public class LogicHandler {
      */
     public boolean movePiece(int actor, int target) {
         System.out.println("assertEquals(true, handler.movePiece(" + actor + ", " + target + "));");
-        if (checkMate == false) {
+        if (checkMate == false && draw == false) {
             if (handler.movePiece(actor, target)) {
                 validateCheckMate();
                 validateDraw();
@@ -89,12 +90,19 @@ public class LogicHandler {
     public ChessBoard getChessBoard() {
         return board;
     }
-    
+    /**
+     * will return turn of the player currently moving.
+     * @return 
+     */
     public Color getTurn() {
         return board.getTurn();
     }
+    
+    public boolean getDraw() {
+        return this.draw;
+    }
 
     private void validateDraw() {
-        //TODO add draw check here when it is ready.
+        this.draw = drawObserver.isDraw();
     }
 }

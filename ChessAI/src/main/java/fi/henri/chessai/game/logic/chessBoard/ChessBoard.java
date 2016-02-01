@@ -276,10 +276,10 @@ public class ChessBoard {
      * @return true if piece has moved during game.
      */
     public boolean hasPieceMovedInSquare(int i) {
-        if (board[i] % 2 == 0) {
-            return true;
-        } else {
-            return false;
-        }
+        return board[i] % 2 == 0;
+    }
+    
+    public ArrayList<String> getHistory() {
+        return this.boardHistory;
     }
 }

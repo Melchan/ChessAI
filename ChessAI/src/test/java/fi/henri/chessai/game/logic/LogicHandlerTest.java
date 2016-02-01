@@ -134,4 +134,18 @@ public class LogicHandlerTest {
         assertEquals(true, handler.movePiece(58, 61));
         assertEquals(true, handler.getCheckMate());
     }
+
+    @Test
+    public void threeFoldRepetitionWorks() {
+        assertEquals(true, handler.movePiece(62, 45));
+        assertEquals(true, handler.movePiece(6, 21));
+        assertEquals(true, handler.movePiece(45, 62));
+        assertEquals(true, handler.movePiece(21, 6));
+        assertEquals(true, handler.movePiece(62, 45));
+        assertEquals(true, handler.movePiece(6, 21));
+        assertEquals(true, handler.movePiece(45, 62));
+        assertEquals(true, handler.movePiece(21, 6));
+        assertEquals(true, handler.movePiece(62, 45));
+        assertEquals(true, handler.getDraw());
+    }
 }

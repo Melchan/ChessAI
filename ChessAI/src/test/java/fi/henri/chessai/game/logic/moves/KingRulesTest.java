@@ -15,6 +15,7 @@ import org.junit.Test;
  * @author manhenri
  */
 public class KingRulesTest {
+
     private ChessBoard board;
     private KingRules kRules;
     private char w;
@@ -35,31 +36,31 @@ public class KingRulesTest {
         this.board.attemptToPlacePiece(w, 60);
         this.board.attemptToPlacePiece(b, 4);
     }
-    
+
     @Test
     public void kingCanMoveHorizontally() {
         assertEquals(true, kRules.commitIfMoveIsLegal(27, 26));
         assertEquals(true, kRules.commitIfMoveIsLegal(28, 29));
     }
-    
+
     @Test
     public void kingCanMoveVertically() {
         assertEquals(true, kRules.commitIfMoveIsLegal(27, 19));
         assertEquals(true, kRules.commitIfMoveIsLegal(28, 36));
     }
-    
+
     @Test
     public void kingCanMoveDiaconallyUp() {
         assertEquals(true, kRules.commitIfMoveIsLegal(27, 18));
         assertEquals(true, kRules.commitIfMoveIsLegal(28, 21));
     }
-    
+
     @Test
     public void kingCanMoveDiaconallyDown() {
         assertEquals(true, kRules.commitIfMoveIsLegal(27, 34));
         assertEquals(true, kRules.commitIfMoveIsLegal(28, 37));
     }
-    
+
     @Test
     public void kingCannotMoveMoreThanOneSquare() {
         assertEquals(false, kRules.commitIfMoveIsLegal(27, 25));
@@ -67,27 +68,27 @@ public class KingRulesTest {
         assertEquals(false, kRules.commitIfMoveIsLegal(27, 9));
         assertEquals(false, kRules.commitIfMoveIsLegal(27, 41));
     }
-    
+
     @Test
     public void castlingLeftSide() {
         assertEquals(true, kRules.commitIfMoveIsLegal(60, 58));
         assertEquals(true, kRules.commitIfMoveIsLegal(4, 2));
     }
-    
+
     @Test
     public void castlingRightSide() {
         assertEquals(true, kRules.commitIfMoveIsLegal(60, 62));
         assertEquals(true, kRules.commitIfMoveIsLegal(4, 6));
     }
-    
-    @Test 
+
+    @Test
     public void cantCastleWhenSomeThingIsBetweenTwoPiecesRightSide() {
         this.board.attemptToPlacePiece(w, 61);
         this.board.attemptToPlacePiece(b, 5);
         assertEquals(false, kRules.commitIfMoveIsLegal(60, 62));
         assertEquals(false, kRules.commitIfMoveIsLegal(4, 6));
     }
-    
+
     @Test
     public void cantCastleWhenSomeThingIsBetweenTwoPiecesLeftSide() {
         this.board.attemptToPlacePiece(w, 59);
@@ -95,7 +96,7 @@ public class KingRulesTest {
         assertEquals(false, kRules.commitIfMoveIsLegal(60, 58));
         assertEquals(false, kRules.commitIfMoveIsLegal(4, 2));
     }
-    
+
     @Test
     public void whenCastlingRookMovesAsItShould() {
         kRules.commitIfMoveIsLegal(60, 58);
@@ -105,15 +106,40 @@ public class KingRulesTest {
         assertEquals(2, board.getSquareContent(59));
         assertEquals(22, board.getSquareContent(5));
     }
-    
-    @Test 
+
+    @Test
     public void noWeirdCastling() {
         board.setPieceToMoved(60);
         assertEquals(false, kRules.commitIfMoveIsLegal(60, 58));
     }
-    
+
     @Test
     public void kingCannotMoveLikeSuperKnight() {
         assertEquals(false, kRules.commitIfMoveIsLegal(63, 6));
+    }
+
+    @Test
+    public void whenKingMovesFirstTimeWillSetRooksToMoved() {
+        assertEquals(true, kRules.movePiece(60, 52));
+        assertEquals(true, kRules.movePiece(4, 12));
+        assertEquals(true, board.hasPieceMovedInSquare(0));
+        assertEquals(true, board.hasPieceMovedInSquare(7));
+        assertEquals(true, board.hasPieceMovedInSquare(63));
+        assertEquals(true, board.hasPieceMovedInSquare(53));
+    }
+
+    @Test
+    public void whenKingSetsRooksMovedWhenMovedHeDoesntCreatePawns() {
+        assertEquals(true, kRules.movePiece(63, 55));
+        assertEquals(true, kRules.movePiece(0, 8));
+        assertEquals(true, kRules.movePiece(56, 48));
+        assertEquals(true, kRules.movePiece(7, 15));
+        assertEquals(true, kRules.movePiece(60, 52));
+        assertEquals(true, kRules.movePiece(4, 12));
+        char empty = 0;
+        assertEquals(empty, board.getSquareContent(63));
+        assertEquals(empty, board.getSquareContent(0));
+        assertEquals(empty, board.getSquareContent(56));
+        assertEquals(empty, board.getSquareContent(7));
     }
 }

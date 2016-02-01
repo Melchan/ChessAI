@@ -10,4 +10,4 @@
  - Ohjelma saa syötteekseen pelaajan siirtoja
 
 ## Tavoitteena olvat aika ja tilavaativuudet
- - Vaatii lisää analysointia, että voisin antaa jotain muuta kuin heiton.
+ - että algoritmi toimii polynomisessa ajassa ja tilavaativuus on vakio.

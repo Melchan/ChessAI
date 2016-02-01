@@ -61,4 +61,42 @@ public class RookRulesTest {
         assertEquals(false, rRules.commitIfMoveIsLegal(27, 6));
         assertEquals(false, rRules.commitIfMoveIsLegal(28, 55));
     }
+
+    @Test
+    public void whenOneRooksHasMovedKingWillNotTurnToMovedStatus() {
+        w = 3;
+        b = 21;
+        board.attemptToPlacePiece(b, 0);
+        board.attemptToPlacePiece(b, 7);
+        board.attemptToPlacePiece(b, 4);
+
+        board.attemptToPlacePiece(w, 63);
+        board.attemptToPlacePiece(w, 60);
+        board.attemptToPlacePiece(w, 56);
+
+        assertEquals(true, rRules.movePiece(63, 55));
+        assertEquals(true, rRules.movePiece(0, 8));
+        assertEquals(false, board.hasPieceMovedInSquare(4));
+        assertEquals(false, board.hasPieceMovedInSquare(60));
+    }
+
+    @Test
+    public void whenBothRooksHaveMovedKingWillTurnToMovedStatus() {
+        w = 3;
+        b = 21;
+        board.attemptToPlacePiece(b, 0);
+        board.attemptToPlacePiece(b, 7);
+        board.attemptToPlacePiece(b, 4);
+
+        board.attemptToPlacePiece(w, 63);
+        board.attemptToPlacePiece(w, 60);
+        board.attemptToPlacePiece(w, 56);
+
+        assertEquals(true, rRules.movePiece(63, 55));
+        assertEquals(true, rRules.movePiece(0, 8));
+        assertEquals(true, rRules.movePiece(56, 48));
+        assertEquals(true, rRules.movePiece(7, 15));
+        assertEquals(true, board.hasPieceMovedInSquare(4));
+        assertEquals(true, board.hasPieceMovedInSquare(60));
+    }
 }

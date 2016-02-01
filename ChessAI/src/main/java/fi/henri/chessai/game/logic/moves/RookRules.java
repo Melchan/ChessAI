@@ -21,7 +21,11 @@ public class RookRules extends PieceMovement {
     protected boolean commitIfMoveIsLegal(int actor, int target) {
         if (allowedRookMovement(actor, target)) {
             if (super.pathClear(actor, target)) {
-                return super.getBoard().attemptToMovePiece(actor, target);
+                if (super.getBoard().attemptToMovePiece(actor, target)) {
+                    ifNoCastlingMakeKingMoved(actor);
+                    return true;
+                }
+
             }
         }
         return false;
@@ -34,5 +38,25 @@ public class RookRules extends PieceMovement {
         int yChange = change[1];
 
         return xChange == 0 || yChange == 0;
+    }
+
+    private void ifNoCastlingMakeKingMoved(int actor) {
+        if (actor == 0 || actor == 7) {
+            if (blackRooksHaveMoved()) {
+                super.getBoard().setPieceToMoved(4);
+            }
+        } else if (actor == 63 || actor == 56) {
+            if (whiteRooksHaveMoved()) {
+                super.getBoard().setPieceToMoved(60);
+            }
+        }
+    }
+    
+    private boolean blackRooksHaveMoved() {
+        return super.getBoard().hasPieceMovedInSquare(0) && super.getBoard().hasPieceMovedInSquare(7);
+    }
+    
+    private boolean whiteRooksHaveMoved() {
+        return super.getBoard().hasPieceMovedInSquare(63) && super.getBoard().hasPieceMovedInSquare(56);
     }
 }

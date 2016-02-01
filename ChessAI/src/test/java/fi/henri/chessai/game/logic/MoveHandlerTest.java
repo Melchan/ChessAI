@@ -131,4 +131,16 @@ public class MoveHandlerTest {
         board.attemptToPlacePiece(wRook, 0);
         assertEquals(false, handler.movePiece(4, 2));
     }
+    
+    public void castlingChecksAreOk() {
+        board.attemptToPlacePiece(wKing, 52);
+        board.attemptToPlacePiece(wRook, 56);
+        board.attemptToPlacePiece(bKing, 4);
+        board.attemptToPlacePiece(bRook, 8);
+        handler.movePiece(52, 60);
+        handler.movePiece(8, 0);
+        assertEquals(false, handler.movePiece(60, 62));
+        board.changeTurn();
+        assertEquals(false, handler.movePiece(4, 2));  
+    }
 }
