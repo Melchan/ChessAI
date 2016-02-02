@@ -7,3 +7,7 @@ tätä aijon käyttää hyväkseni teko-älyssä. Siinä että tutkittua tilanne
 
 Tällä viikolla opin käyttämään tähän projektiin enemmän aikaa. Koska aika ei oikein tahtonut riittää.
 seuraavaksi suunnittelen tekoälyn valmiiksi. Pitänee luonnostella valkotaululle hieman.
+
+Seuraavalla viikolla aijon ottaa selvää hyvistä pisteytys metodeista. Lukea pseudoa ja muuta materiaalia miten puu haku kannattaa toteuttaa.
+Laadin alustavan suunnitelman miten aijon toteuttaa tekoälyn. Niin että en koodaa itseäni nurkkaan. Ja hidasta myöhemmässä vaiheessa työn etenemistä.
+
