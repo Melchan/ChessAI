@@ -105,4 +105,11 @@ public class LogicHandler {
     private void validateDraw() {
         this.draw = drawObserver.isDraw();
     }
+    /**
+     * rolls game backwards wished amount of turns. Intended to AI use.
+     * @param i 
+     */
+    public void rollBack(int i) {
+        board.rollBack(i);
+    }
 }
