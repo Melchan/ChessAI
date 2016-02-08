@@ -5,6 +5,7 @@
  */
 package fi.henri.chessai.game;
 
+import fi.henri.chessai.game.AI.AI;
 import fi.henri.chessai.game.logic.LogicHandler;
 import fi.henri.chessai.game.ui.UI;
 
@@ -15,9 +16,11 @@ import fi.henri.chessai.game.ui.UI;
 public class Game {
     private LogicHandler handler;
     private UI ui;
+    private AI ai;
     
     public Game() {
         this.handler = new LogicHandler();
+        this.ai = new AI(handler);
         this.ui = new UI(handler);
     }
     
