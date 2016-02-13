@@ -32,11 +32,7 @@ class PawnDetector extends MoveDetector {
                 k[0] += x;
                 k[1] += y;
                 int target = board.coordinatesToIndex(k);
-                if (super.handler.movePiece(i, target)) {
-                    s += (super.rightSize(i) + super.rightSize(target));
-                    result.add(s);
-                    super.board.rollBack(1);
-                }
+                super.tryToMoveAndRecord(i, target, result);
             }
         }
         result.addAll(possibleMarchMove(i));
@@ -46,18 +42,18 @@ class PawnDetector extends MoveDetector {
     private ArrayList<String> possibleMarchMove(int i) {
         ArrayList<String> result = new ArrayList<String>();
         String s = "";
-        if (super.board.hasPieceMovedInSquare(i)) {
+        if (!super.board.hasPieceMovedInSquare(i)) {
             int[] a = super.board.indexToCoordinates(i);
             a[1] += 2;
             int target = board.coordinatesToIndex(a);
-            if (super.handler.movePiece(i, target)) {
+            if (super.moveHandler.movePiece(i, target)) {
                 s += (super.rightSize(i) + super.rightSize(target));
                 result.add(s);
                 super.handler.rollBack(1);
             } else {
                 a[1] -= 4;
                 target = board.coordinatesToIndex(a);
-                if (super.handler.movePiece(i, target)) {
+                if (super.moveHandler.movePiece(i, target)) {
                     s += (super.rightSize(i) + super.rightSize(target));
                     result.add(s);
                     super.handler.rollBack(1);

@@ -20,7 +20,27 @@ class BishopDetector extends MoveDetector {
 
     @Override
     public ArrayList<String> possibleMoves(int location) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return bishopMoves(location);
+    }
+
+    private ArrayList<String> bishopMoves(int location) {
+        ArrayList<String> result = new ArrayList<String>();
+        
+        for (int t : endPoints(location)) {
+            super.tryToMoveAndRecord(t, t, result);
+        }
+        
+        return result;
     }
     
+    private ArrayList<Integer> endPoints(int location) {
+        ArrayList<Integer> result = new ArrayList<>();
+        int t[] = super.board.indexToCoordinates(location);
+        int left = Math.abs(t[0] - 7);
+        int right = Math.abs(7 - t[0]);
+        
+        t[0] -= left;
+        t[1] -= left;
+        return result;
+    }
 }

@@ -21,12 +21,14 @@ public class RookDetectorTest {
     private LogicHandler handler;
     private RookDetector detector;
     private ArrayList<String> check;
+    private ArrayList<String> result;
 
     @Before
     public void setUp() {
         this.handler = new LogicHandler();
         this.detector = new RookDetector(handler);
         this.check = new ArrayList<>();
+        this.result = new ArrayList<>();
     }
 
     @Test
@@ -40,11 +42,18 @@ public class RookDetectorTest {
         handler.movePiece(15, 31);
         check.add("5648");
         check.add("5640");
-        for (String s : detector.possibleMoves(48)) {
+        result.addAll(detector.possibleMoves(56));
+        for (String s : result) {
+            System.out.println(s);
             assertTrue(check.contains(s));
         }
+        System.out.println("");
+        for (String s : check) {
+            System.out.println(s);
+            assertTrue(result.contains(s));
+        }
     }
-    
+
     @Test
     public void limitedMmoveSpacesXaxis() {
         handler.movePiece(48, 32);
@@ -60,29 +69,62 @@ public class RookDetectorTest {
         check.add("4045");
         check.add("4046");
         check.add("4047");
-        check.add("3012");
-        for (String s : detector.possibleMoves(40)) {
-            assertEquals(true, check.contains(s));
+        result.addAll(detector.possibleMoves(40));
+        for (String s : result) {
+            assertTrue(check.contains(s));
+        }
+        for (String s : check) {
+            assertTrue(result.contains(s));
         }
     }
-    
+
     @Test
     public void limitedMmoveSpacesXaxisMinusSide() {
-        handler.movePiece(48, 32);
-        handler.movePiece(15, 31);
-        handler.movePiece(56, 40);
-        handler.movePiece(8, 24);
-        check.add("4056");
-        check.add("4048");
-        check.add("4041");
-        check.add("4042");
-        check.add("4043");
-        check.add("4044");
-        check.add("4045");
-        check.add("4046");
-        check.add("4047");
-        for (String s : detector.possibleMoves(40)) {
+        assertTrue(handler.movePiece(48, 32));
+        assertTrue(handler.movePiece(15, 31));
+        assertTrue(handler.movePiece(56, 40));
+        assertTrue(handler.movePiece(8, 24));
+        assertTrue(handler.movePiece(40, 41));
+        assertTrue(handler.movePiece(14, 30));
+        check.add("4140");
+        check.add("4142");
+        check.add("4143");
+        check.add("4144");
+        check.add("4145");
+        check.add("4146");
+        check.add("4147");
+        check.add("4133");
+        check.add("4125");
+        check.add("4117");
+        check.add("4109");
+
+        result.addAll(detector.possibleMoves(41));
+        for (String s : result) {
             assertTrue(check.contains(s));
+        }
+        System.out.println("");
+        for (String s : check) {
+            assertTrue(result.contains(s));
+        }
+    }
+
+    @Test
+    public void ifKingInCheckWillWorkTheRightWay() {
+        assertTrue(handler.movePiece(48, 32));
+        assertTrue(handler.movePiece(12, 20));
+        assertTrue(handler.movePiece(56, 40));
+        assertTrue(handler.movePiece(3, 30));
+        assertTrue(handler.movePiece(52, 44));
+        assertTrue(handler.movePiece(30, 44));
+        check.add("4044");
+        
+        result.addAll(detector.possibleMoves(40));
+        for (String s : result) {
+            assertTrue(check.contains(s));
+        }
+        System.out.println("");
+        for (String s : check) {
+            assertTrue(result.contains(s));
         }
     }
 }

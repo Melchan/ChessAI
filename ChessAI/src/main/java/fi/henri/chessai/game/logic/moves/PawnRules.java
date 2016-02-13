@@ -1,7 +1,9 @@
 package fi.henri.chessai.game.logic.moves;
 
 import fi.henri.chessai.game.logic.chessBoard.ChessBoard;
+import fi.henri.chessai.game.logic.chessBoard.ChessPiece;
 import static fi.henri.chessai.game.logic.chessBoard.ChessPiece.BLACKPAWN;
+import static fi.henri.chessai.game.logic.chessBoard.ChessPiece.NOTCHESSPIECE;
 import static fi.henri.chessai.game.logic.chessBoard.ChessPiece.WHITEPAWN;
 import java.awt.Color;
 import static java.awt.Color.BLACK;
@@ -40,8 +42,10 @@ public class PawnRules extends PieceMovement {
         int[] t = super.getBoard().indexToCoordinates(target);
         int xChange = Math.abs(a[0] - t[0]);
         int yChange = a[1] - t[1];
+        char p = super.getBoard().getSquareContent(target);
+        ChessPiece piece = super.getBoard().boardCharToChessPiece(p);
         if (isCorrectDirectionAndLenghtForColor(actor, yChange)) {
-            if (moveAction(xChange)) {
+            if (moveAction(xChange) && piece == NOTCHESSPIECE) {
                 if (super.pathClear(actor, target)) {
                     detectAndSetEnPassant(actor, target);
                     return true;

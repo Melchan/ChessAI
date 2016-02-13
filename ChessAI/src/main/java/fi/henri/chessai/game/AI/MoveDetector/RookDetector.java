@@ -34,23 +34,23 @@ class RookDetector extends MoveDetector {
         a[1] = 7;
         t = super.board.coordinatesToIndex(a);
         result.add(t);
-        
-        a = super.board.indexToCoordinates(i);
-        a[0] = 0;
-        t = super.board.coordinatesToIndex(a);
+
+        int[] b = super.board.indexToCoordinates(i);
+        b[0] = 0;
+        t = super.board.coordinatesToIndex(b);
         result.add(t);
-        a[0] = 7;
-        t = super.board.coordinatesToIndex(a);
+        b[0] = 7;
+        t = super.board.coordinatesToIndex(b);
         result.add(t);
         
         return result;
     }
     
-    private ArrayList<String> rookMoves(int i) {
-        ArrayList<Integer> endPoints = moveDirections(i); 
+    private ArrayList<String> rookMoves(int a) {
+        ArrayList<Integer> endPoints = moveDirections(a); 
         ArrayList<String> result = new ArrayList<String>();
-        for (int l : endPoints) {
-            result.addAll(super.pathToMove(i, l));
+        for (int t : endPoints) {
+            result.addAll(super.pathToMove(a, t));
         }
         return result;
     }

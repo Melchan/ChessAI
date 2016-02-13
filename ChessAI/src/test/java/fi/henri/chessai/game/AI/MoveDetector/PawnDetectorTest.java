@@ -19,20 +19,26 @@ public class PawnDetectorTest {
     private LogicHandler handler;
     private PawnDetector detector;
     private ArrayList<String> check;
+    private ArrayList<String> result;
     
     @Before
     public void setUp() {
         this.handler = new LogicHandler();
         this.detector = new PawnDetector(handler);
         this.check = new ArrayList<>();
+        this.result = new ArrayList<>();
     }
     
     @Test
     public void allowedMovesRightAtStartOfTheGame() {
         check.add("4840");
         check.add("4832");
-        for (String s : detector.possibleMoves(48)) {
+        result.addAll(detector.possibleMoves(48));
+        for (String s : result) {
             assertTrue(check.contains(s));
+        }
+        for (String s : check) {
+            assertTrue(result.contains(s));
         }
     }
     
@@ -41,8 +47,12 @@ public class PawnDetectorTest {
         handler.movePiece(51, 35);
         check.add("1220");
         check.add("1228");
-        for (String s : detector.possibleMoves(12)) {
+        result.addAll(detector.possibleMoves(12));
+        for (String s : result) {
             assertTrue(check.contains(s));
+        }
+        for (String s : check) {
+            assertTrue(result.contains(s));
         }
     }
     
@@ -52,8 +62,12 @@ public class PawnDetectorTest {
         handler.movePiece(12, 28);
         check.add("3527");
         check.add("3528");
-        for (String s : detector.possibleMoves(35)) {
+        result.addAll(detector.possibleMoves(35));
+        for (String s : result) {
             assertTrue(check.contains(s));
+        }
+        for (String s : check) {
+            assertTrue(result.contains(s));
         }
     }
     
@@ -65,19 +79,27 @@ public class PawnDetectorTest {
         handler.movePiece(13, 29);
         check.add("2821");
         check.add("2820");
-        for (String s : detector.possibleMoves(28)) {
+        result.addAll(detector.possibleMoves(28));
+        for (String s : result) {
             assertTrue(check.contains(s));
+        }
+        for (String s : check) {
+            assertTrue(result.contains(s));
         }
     }
     
     @Test
     public void allowedMovesBlackSecondTurn() {
-        handler.movePiece(51, 35);
-        handler.movePiece(12, 28);
-        handler.movePiece(35, 27);
+        assertTrue(handler.movePiece(51, 35));
+        assertTrue(handler.movePiece(12, 28));
+        assertTrue(handler.movePiece(35, 27));
         check.add("1119");
-        for (String s : detector.possibleMoves(11)) {
+        result.addAll(detector.possibleMoves(11));
+        for (String s : result) {
             assertTrue(check.contains(s));
+        }
+        for (String s : check) {
+            assertTrue(result.contains(s));
         }
     }
 }

@@ -6,7 +6,9 @@
 package fi.henri.chessai.game.AI.MoveDetector;
 
 import fi.henri.chessai.game.logic.LogicHandler;
+import fi.henri.chessai.game.logic.MoveHandler;
 import fi.henri.chessai.game.logic.chessBoard.ChessBoard;
+import static fi.henri.chessai.game.logic.chessBoard.ChessPiece.NOTCHESSPIECE;
 import java.util.ArrayList;
 
 /**
@@ -17,10 +19,13 @@ public abstract class MoveDetector {
 
     protected LogicHandler handler;
     protected ChessBoard board;
+    protected MoveHandler moveHandler;
 
     public MoveDetector(LogicHandler handler) {
         this.handler = handler;
         this.board = handler.getChessBoard();
+        this.moveHandler = handler.getMoveHandler();
+        
     }
 
     /**
@@ -66,22 +71,33 @@ public abstract class MoveDetector {
         int[] t = board.indexToCoordinates(target);
         a[0] = changeToOneCloserToTarget(a[0], t[0]);
         a[1] = changeToOneCloserToTarget(a[1], t[1]);
-
+        int newTarget = board.coordinatesToIndex(a);
+        
         while (a[0] != t[0] || a[1] != t[1]) {
-            int newTarget = board.coordinatesToIndex(a);
-            if (!handler.movePiece(actor, newTarget)) {
-                break;
-            }
-            result.add("" + rightSize(actor) + rightSize(newTarget));
-            handler.rollBack(1);
+            tryToMoveAndRecord(actor, newTarget, result);
+            
             a[0] = changeToOneCloserToTarget(a[0], t[0]);
             a[1] = changeToOneCloserToTarget(a[1], t[1]);
+            
+            newTarget = board.coordinatesToIndex(a);
+            char piece = board.getSquareContent(newTarget);
+            if (!(board.boardCharToChessPiece(piece) == NOTCHESSPIECE)) {
+                tryToMoveAndRecord(actor, newTarget, result);
+                break;
+            }
         }
-        if (handler.movePiece(actor, target)) {
+        if (moveHandler.movePiece(actor, target)) {
             result.add("" + rightSize(actor) + rightSize(target));
             handler.rollBack(1);
         }
         return result;
+    }
+    
+    protected void tryToMoveAndRecord(int actor, int target, ArrayList<String> result) {
+        if (moveHandler.movePiece(actor, target)) {
+                result.add("" + rightSize(actor) + rightSize(target));
+                handler.rollBack(1);
+            }
     }
 
     private int changeToOneCloserToTarget(int a, int t) {
@@ -96,9 +112,10 @@ public abstract class MoveDetector {
         }
         return a;
     }
-    
+
     /**
      * turns integer to right format for saving in string
+     *
      * @param i
      * @return returns size 2 string.
      */

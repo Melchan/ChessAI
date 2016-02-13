@@ -56,9 +56,10 @@ public class LogicHandler {
      *
      * @param actor
      * @param target
+     * @return true if move is commited.
      */
     public boolean movePiece(int actor, int target) {
-        System.out.println("assertEquals(true, handler.movePiece(" + actor + ", " + target + "));");
+        //System.out.println("assertTrue(handler.movePiece(" + actor + ", " + target + "));");
         if (checkMate == false && draw == false) {
             if (handler.movePiece(actor, target)) {
                 validateCheckMate();
@@ -111,5 +112,9 @@ public class LogicHandler {
      */
     public void rollBack(int i) {
         board.rollBack(i);
+    }
+    
+    public MoveHandler getMoveHandler() {
+        return this.handler;
     }
 }
