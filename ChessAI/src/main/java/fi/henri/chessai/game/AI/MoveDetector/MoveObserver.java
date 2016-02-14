@@ -25,6 +25,7 @@ public class MoveObserver {
     public MoveObserver(LogicHandler handler) {
         this.handler = handler;
         this.board = handler.getChessBoard();
+        this.moveDetectorLibrary = new HashMap<ChessPiece, MoveDetector>();
         initializeMoveLibrary();
     }
 
