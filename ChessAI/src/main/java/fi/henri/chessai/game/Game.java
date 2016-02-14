@@ -8,6 +8,7 @@ package fi.henri.chessai.game;
 import fi.henri.chessai.game.AI.AI;
 import fi.henri.chessai.game.logic.LogicHandler;
 import fi.henri.chessai.game.ui.UI;
+import static java.awt.Color.BLACK;
 
 /**
  *
@@ -20,7 +21,7 @@ public class Game {
     
     public Game() {
         this.handler = new LogicHandler();
-        this.ai = new AI(handler);
+        this.ai = new AI(handler, BLACK);
         this.ui = new UI(handler);
     }
     
