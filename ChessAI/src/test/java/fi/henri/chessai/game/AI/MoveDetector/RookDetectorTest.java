@@ -44,14 +44,12 @@ public class RookDetectorTest {
         check.add("5640");
         result.addAll(detector.possibleMoves(56));
         for (String s : result) {
-            System.out.println(s);
             assertTrue(check.contains(s));
         }
-        System.out.println("");
         for (String s : check) {
-            System.out.println(s);
             assertTrue(result.contains(s));
         }
+        assertEquals(check.size(), result.size());
     }
 
     @Test
@@ -76,6 +74,7 @@ public class RookDetectorTest {
         for (String s : check) {
             assertTrue(result.contains(s));
         }
+        assertEquals(check.size(), result.size());
     }
 
     @Test
@@ -102,10 +101,10 @@ public class RookDetectorTest {
         for (String s : result) {
             assertTrue(check.contains(s));
         }
-        System.out.println("");
         for (String s : check) {
             assertTrue(result.contains(s));
         }
+        assertEquals(check.size(), result.size());
     }
 
     @Test
@@ -122,9 +121,9 @@ public class RookDetectorTest {
         for (String s : result) {
             assertTrue(check.contains(s));
         }
-        System.out.println("");
         for (String s : check) {
             assertTrue(result.contains(s));
         }
+        assertEquals(check.size(), result.size());
     }
 }

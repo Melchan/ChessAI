@@ -39,24 +39,6 @@ public abstract class MoveDetector {
     public abstract ArrayList<String> possibleMoves(int location);
 
     /**
-     * Will give out how much x and y axis will change between moves.
-     *
-     * @param actor
-     * @param target
-     * @return result[0] = xChange result[1] = yChange
-     */
-    protected int[] differenceBetweenTwoPoints(int actor, int target) {
-        int[] result = new int[2];
-        int[] a = board.indexToCoordinates(actor);
-        int[] t = board.indexToCoordinates(target);
-
-        result[0] = Math.abs(a[0] - t[0]);
-        result[1] = Math.abs(a[1] - t[1]);
-
-        return result;
-    }
-
-    /**
      * Will try to move in every square between two points for as long as it
      * encounters move that is not legal
      *

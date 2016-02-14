@@ -7,6 +7,7 @@ package fi.henri.chessai.game.AI.MoveDetector;
 
 import fi.henri.chessai.game.logic.LogicHandler;
 import java.util.ArrayList;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.Test;
@@ -40,6 +41,7 @@ public class PawnDetectorTest {
         for (String s : check) {
             assertTrue(result.contains(s));
         }
+        assertEquals(check.size(), result.size());
     }
     
     @Test
@@ -54,6 +56,7 @@ public class PawnDetectorTest {
         for (String s : check) {
             assertTrue(result.contains(s));
         }
+        assertEquals(check.size(), result.size());
     }
     
     @Test
@@ -86,6 +89,7 @@ public class PawnDetectorTest {
         for (String s : check) {
             assertTrue(result.contains(s));
         }
+        assertEquals(check.size(), result.size());
     }
     
     @Test
@@ -101,5 +105,6 @@ public class PawnDetectorTest {
         for (String s : check) {
             assertTrue(result.contains(s));
         }
+        assertEquals(check.size(), result.size());
     }
 }

@@ -60,7 +60,7 @@ class KnightDetector extends MoveDetector {
         helpX.add(2);
         helpY.add(-1);
         
-        helpX.add(-1);
+        helpX.add(1);
         helpY.add(-2);
     }
 }

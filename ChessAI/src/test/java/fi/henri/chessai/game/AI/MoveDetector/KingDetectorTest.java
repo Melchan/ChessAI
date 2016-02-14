@@ -71,6 +71,7 @@ public class KingDetectorTest {
             System.out.println(s);
             assertTrue(result.contains(s));
         }
+        assertEquals(check.size(), result.size());
     }
 
     @Test
@@ -109,5 +110,6 @@ public class KingDetectorTest {
             System.out.println(s);
             assertTrue(result.contains(s));
         }
+        assertEquals(check.size(), result.size());
     }
 }

@@ -2,6 +2,7 @@ package fi.henri.chessai.game.AI.MoveDetector;
 
 import fi.henri.chessai.game.logic.LogicHandler;
 import java.util.ArrayList;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.Test;
@@ -41,6 +42,7 @@ public class KnightDetectorTest {
         for (String s : check) {
             assertTrue(result.contains(s));
         }
+        assertEquals(check.size(), result.size());
     }
 
     @Test
@@ -54,10 +56,14 @@ public class KnightDetectorTest {
         check.add("4225");
         result.addAll(detector.possibleMoves(42));
         for (String s : result) {
+            System.out.println(s);
+        }
+        for (String s : result) {
             assertTrue(check.contains(s));
         }
         for (String s : check) {
             assertTrue(result.contains(s));
         }
-    }
+        assertEquals(check.size(), result.size());
+    } 
 }

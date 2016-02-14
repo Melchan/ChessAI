@@ -13,14 +13,21 @@ import java.util.ArrayList;
  * @author manhenri
  */
 class QueenDetector extends MoveDetector {
+    private RookDetector rook;
+    private BishopDetector bishop;
 
     public QueenDetector(LogicHandler handler) {
         super(handler);
+        this.bishop = new BishopDetector(handler);
+        this.rook = new RookDetector(handler);
+        
     }
 
     @Override
     public ArrayList<String> possibleMoves(int location) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        ArrayList<String> result = new ArrayList<>();
+        result.addAll(rook.possibleMoves(location));
+        result.addAll(bishop.possibleMoves(location));
+        return result;
     }
-    
 }
