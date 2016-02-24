@@ -10,13 +10,15 @@ import java.awt.Color;
 public class AI {
     private LogicHandler handler;
     private Color player;
+    private UCTSearch UCT;
     
     public AI(LogicHandler logic, Color color) {
         this.handler = logic;
         this.player = color;
+        this.UCT = new UCTSearch(logic, color);
     }
     
     public void movePiece() {
-        
+        UCT.commitMove();
     }
 }

@@ -27,11 +27,14 @@ public class ChessBoard {
         initialize();
     }
 
-    //TODO CLONE METHOD
-    private ChessBoard(char[] board, ArrayList<String> moveHistory) {
+    /*
+     constructor is intended to be used for staterater. To let staterater use all the tools to manipulate chessboard in question.
+     */
+    public ChessBoard(char[] board) {
         this.board = board.clone();
-        this.boardHistory = (ArrayList<String>) moveHistory.clone();
         this.translator = new ChessBoardTranslator();
+        this.boardHistory = new ArrayList<String>();
+
     }
 
     /**
@@ -160,6 +163,7 @@ public class ChessBoard {
         }
         return false;
     }
+
     /**
      * Method switches turns between white and black.
      */
@@ -278,8 +282,12 @@ public class ChessBoard {
     public boolean hasPieceMovedInSquare(int i) {
         return board[i] % 2 == 0;
     }
-    
+
     public ArrayList<String> getHistory() {
         return this.boardHistory;
+    }
+    
+    public int getMoveCount() {
+        return this.boardHistory.size();
     }
 }

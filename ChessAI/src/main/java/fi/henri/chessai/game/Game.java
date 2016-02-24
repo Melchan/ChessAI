@@ -22,7 +22,7 @@ public class Game {
     public Game() {
         this.handler = new LogicHandler();
         this.ai = new AI(handler, BLACK);
-        this.ui = new UI(handler);
+        this.ui = new UI(handler, ai);
     }
     
     public void run() {

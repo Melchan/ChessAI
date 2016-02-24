@@ -8,6 +8,7 @@ package fi.henri.chessai.game.AI;
 import fi.henri.chessai.game.AI.MoveDetector.MoveObserver;
 import fi.henri.chessai.game.logic.LogicHandler;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  *
@@ -15,12 +16,62 @@ import java.util.ArrayList;
  */
 public class Node {
     private LogicHandler handler;
+    private HashMap<String, String> moveStates;
     private ArrayList<String> moves;
+    private String state;
+    private ArrayList<String> states;
     
     public Node(LogicHandler handler) {
         this.handler = handler;
+        this.state = new String(handler.getChessBoard().getBoard());
         this.moves = new MoveObserver(handler).getPossibleMoves();
+        this.states = new ArrayList<String>();
+        this.moveStates = new HashMap<>();
+        initializeMoveStates();
     }
     
+    private void initializeMoveStates() {
+        for (String s : moves) {
+            addMoveState(s);
+        }
+    }
+
+    private void addMoveState(String s) {
+        int[] action = getActionFromString(s);
+        handler.movePiece(action[0], action[1]);
+        String moveState = new String(handler.getChessBoard().getBoard());
+        states.add(moveState);
+        moveStates.put(moveState,s);
+        handler.rollBack(1);
+    }
     
+    private int[] getActionFromString(String s) {
+        int[] action = new int[2];
+        action[0] = charToInt(s.charAt(0), s.charAt(1));
+        action[1] = charToInt(s.charAt(2), s.charAt(3));
+        
+        return action;
+    }
+    
+    public ArrayList<String> getMoveStates() {
+        return this.states;
+    }
+    
+    public int getPossibleMoveCount() {
+        return this.states.size();
+    }
+
+    private int charToInt(char c, char v) {
+        int tens = (c + 48) + 10;
+        int single = (v + 48);
+        return tens + single;
+    }
+    
+    public String getState() {
+        return state;
+    }
+    
+    public int[] getMove(String state) {
+        return getActionFromString(moveStates.get(state));
+    }
 }

@@ -24,12 +24,12 @@ public class StateRaterTest {
     @Before
     public void SetUp() {
         this.handler = new LogicHandler();
-        this.rater = new StateRater(handler, BLACK);
+        this.rater = new StateRater(BLACK);
     }
 
     @Test
     public void pointsAtStartOfTheGame() {
-        assertEquals(0, rater.getBoardStateValue());
+        assertEquals(0, rater.getBoardStateValue(handler.getChessBoard().getBoard()));
     }
 
     @Test
@@ -37,6 +37,6 @@ public class StateRaterTest {
         assertTrue(handler.movePiece(52, 36));
         assertTrue(handler.movePiece(11, 27));
         assertTrue(handler.movePiece(36, 27));
-        assertEquals(-100, rater.getBoardStateValue());
+        assertEquals(-100, rater.getBoardStateValue(handler.getChessBoard().getBoard()));
     }
 }

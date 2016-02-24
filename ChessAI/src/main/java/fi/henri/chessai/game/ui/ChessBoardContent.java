@@ -5,6 +5,7 @@
  */
 package fi.henri.chessai.game.ui;
 
+import fi.henri.chessai.game.AI.AI;
 import fi.henri.chessai.game.logic.LogicHandler;
 import java.awt.Dimension;
 import java.awt.GridLayout;
@@ -26,9 +27,11 @@ public class ChessBoardContent extends JPanel implements Updatetable, MouseListe
     private Integer firstPaneNumber;
     private Integer secondPaneNumber;
     private LogicHandler handler;
+    private AI ai;
 
-    public ChessBoardContent(LogicHandler handler) {
+    public ChessBoardContent(LogicHandler handler, AI ai) {
         this.handler = handler;
+        this.ai = ai;
         this.squares = new ArrayList();
         this.kingThreateners = new ArrayList<>();
         this.setLayout(new GridLayout(8, 8));
@@ -63,6 +66,7 @@ public class ChessBoardContent extends JPanel implements Updatetable, MouseListe
             updateKingThreateners();
             //promotionHandling();
         }
+        ai.movePiece();
         refresh();
     }
     

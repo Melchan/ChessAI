@@ -5,7 +5,6 @@
  */
 package fi.henri.chessai.game.AI;
 
-import fi.henri.chessai.game.logic.LogicHandler;
 import fi.henri.chessai.game.logic.chessBoard.ChessBoard;
 import fi.henri.chessai.game.logic.chessBoard.ChessPiece;
 import static fi.henri.chessai.game.logic.chessBoard.ChessPiece.BLACKBISHOP;
@@ -22,7 +21,6 @@ import static fi.henri.chessai.game.logic.chessBoard.ChessPiece.WHITEQUEEN;
 import static fi.henri.chessai.game.logic.chessBoard.ChessPiece.WHITEROOK;
 import java.awt.Color;
 import static java.awt.Color.YELLOW;
-import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
@@ -31,23 +29,17 @@ import java.util.HashMap;
  */
 public class StateRater {
 
-    private ChessBoard board;
     private Color player;
-    private ArrayList<Character> ownPieces;
-    private ArrayList<Character> enemyPieces;
     private HashMap<ChessPiece, Integer> values;
     private final int pawn = 100;
-    private final int rook = 320;
+    private final int rook = 510;
     private final int bishop = 333;
-    private final int knight = 510;
+    private final int knight = 320;
     private final int queen = 880;
     private final int king = 0;
 
-    public StateRater(LogicHandler handler, Color player) {
-        this.board = handler.getChessBoard();
+    public StateRater(Color player) {
         this.player = player;
-        this.ownPieces = new ArrayList<Character>();
-        this.enemyPieces = new ArrayList<Character>();
         this.values = new HashMap<>();
         initialize();
     }
@@ -58,42 +50,39 @@ public class StateRater {
      *
      * @return value of current board position.
      */
-    public int getBoardStateValue() {
+    public int getBoardStateValue(char[] chessboard) {
+        ChessBoard board = new ChessBoard(chessboard);
         int result = 0;
-        ownPieces.clear();
-        enemyPieces.clear();
-        for (int i = 0; i < 64; i++) { 
+        for (int i = 0; i < 64; i++) {
             char c = board.getSquareContent(i);
             if (board.pieceColor(c) != YELLOW) {
                 ChessPiece piece = board.boardCharToChessPiece(c);
                 if (board.pieceColor(c) == player) {
-                    this.ownPieces.add(c);
                     result += values.get(piece);
                 } else {
-                    this.ownPieces.add(c);
                     result -= values.get(piece);
                 }
             }
         }
         return result;
     }
-    
+
     private void initialize() {
         values.put(WHITEPAWN, pawn);
         values.put(BLACKPAWN, pawn);
-        
+
         values.put(WHITEROOK, rook);
-        values.put(BLACKROOK,rook);
-        
+        values.put(BLACKROOK, rook);
+
         values.put(WHITEKNIGHT, knight);
         values.put(BLACKKNIGHT, knight);
-        
+
         values.put(WHITEBISHOP, bishop);
         values.put(BLACKBISHOP, bishop);
-        
+
         values.put(WHITEQUEEN, queen);
         values.put(BLACKQUEEN, queen);
-        
+
         values.put(WHITEKING, king);
         values.put(BLACKKING, king);
     }
