@@ -27,10 +27,12 @@ public class MoveHandler {
     private int king;
     private ArrayList<Integer> attackers;
     private ArrayList<Integer> defenders;
+    private PromotionHandler promoter;
 
     public MoveHandler(ChessBoard board) {
         this.board = board;
         this.library = new MoveLibrary(board);
+        this.promoter = new PromotionHandler(board);
         this.threateners = new ArrayList<Integer>();
         this.attackers = new ArrayList<Integer>();
         this.defenders = new ArrayList<Integer>();
@@ -48,7 +50,7 @@ public class MoveHandler {
     public boolean movePiece(int actor, int target) {
         if (library.movePiece(actor, target)) {
             if (!isKingThreatened()) {
-                
+                promotePromotees();
                 return checkCastling(actor, target);
             }
             board.rollBack(1);
@@ -183,5 +185,9 @@ public class MoveHandler {
      */
     public ArrayList<Integer> getDefenders() {
         return defenders;
+    }
+
+    private void promotePromotees() {
+        promoter.checkAndPromote();
     }
 }
