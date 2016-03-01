@@ -39,6 +39,9 @@ public class UCTSearch {
         this.rater = new StateRater(player);
     }
 
+    /**
+     * Asking to AI to do it's move
+     */
     public void commitMove() {
         int time = iterations;
         int turnCount = handler.getMoveCount();
@@ -47,34 +50,39 @@ public class UCTSearch {
             backUp(turnCount);
             time--;
         }
+        selectMove(getCurrentStateKey());
         tree.clear();
-        selectMove();
-    }
-
-    private void selectMove() {
-        ArrayList<String> bestMoves = rateAllMovesInCurrentStateGiveBiggest();
-        int[] move = chooseMove(bestMoves);
-        handler.movePiece(move[0], move[1]);
     }
 
     private void simTree() {
         int t = depth;
         while (t > 0 && notGameOver()) {
-            String key = new String(handler.getChessBoard().getBoard());
-            if (tree.containsKey(key)) {
+            String key = getCurrentStateKey();
+            if (!tree.containsKey(key)) {
                 tree.put(key, new Node(handler));
             }
-            selectMove();
+            if (!notGameOver()) {
+                selectMove(key);
+            }
             t--;
         }
     }
 
     private boolean notGameOver() {
-        return handler.getCheckMate() || handler.getDraw();
+        return !handler.getCheckMate() && !handler.getDraw();
     }
 
-    private ArrayList<String> rateAllMovesInCurrentStateGiveBiggest() {
-        String key = new String(handler.getChessBoard().getBoard());
+    private void selectMove(String key) {
+        ArrayList<String> bestMoves = rateAllMovesInCurrentStateGiveBiggest(key);
+        int[] move = chooseMove(bestMoves, key);
+        handler.movePiece(move[0], move[1]);
+
+    }
+
+    private ArrayList<String> rateAllMovesInCurrentStateGiveBiggest(String key) {
+        if (!tree.containsKey(key)) {
+            tree.put(key, new Node(handler));
+        }
         ArrayList<String> states = tree.get(key).getMoveStates();
         ArrayList<String> movePoints = new ArrayList<>();
         for (String s : states) {
@@ -98,9 +106,13 @@ public class UCTSearch {
     }
 
     private double getRegret(String s) {
+        double c = explorationConstant;
+        if (!searchMemory.containsKey(s)) {
+            return win * c;
+        }
         int moves = getUnExplored(s);
         int exploration = getExplorationCount(s);
-        double c = explorationConstant;
+
         return c * Math.sqrt(Math.log1p(moves) / (double) exploration);
     }
 
@@ -122,23 +134,31 @@ public class UCTSearch {
 
     private void keepBiggest(String key, ArrayList<String> list) {
         double d = pointMemory.get(key);
-        double biggest = pointMemory.get(list.get(0));
-        if (d > biggest) {
-            list.clear();
+        if (list.isEmpty()) {
             list.add(key);
-        } else if (d == biggest) {
-            list.add(key);
+        } else {
+            double biggest = pointMemory.get(list.get(0));
+            if (d > biggest) {
+                list.clear();
+                list.add(key);
+            } else if (d == biggest) {
+                list.add(key);
+            }
         }
     }
 
     private void keepSmallest(String key, ArrayList<String> list) {
         double d = pointMemory.get(key);
-        double smallest = pointMemory.get(list.get(0));
-        if (d < smallest) {
-            list.clear();
+        if (list.isEmpty()) {
             list.add(key);
-        } else if (d == smallest) {
-            list.add(key);
+        } else {
+            double smallest = pointMemory.get(list.get(0));
+            if (d < smallest) {
+                list.clear();
+                list.add(key);
+            } else if (d == smallest) {
+                list.add(key);
+            }
         }
     }
 
@@ -150,12 +170,12 @@ public class UCTSearch {
         }
     }
 
-    private int[] chooseMove(ArrayList<String> bestMoves) {
+    private int[] chooseMove(ArrayList<String> bestMoves, String node) {
         int size = bestMoves.size();
         double random = Math.random();
         int index = (int) ((double) size * random);
         String key = bestMoves.get(index);
-        return tree.get(key).getMove(key);
+        return tree.get(node).getMove(key);
     }
 
     private double endGamePoints() {
@@ -170,10 +190,13 @@ public class UCTSearch {
     }
 
     private void backUp(int turnCount) {
-        while (handler.getMoveCount() != turnCount) {
-            handler.getChessBoard().rollBack(1);
-            String key = new String(handler.getChessBoard().getBoard());
-            int count = searchMemory.get(key) + 1;
+        while (handler.getMoveCount() > turnCount) {
+            handler.rollBack(1);
+            String key = getCurrentStateKey();
+            int count = 1;
+            if (searchMemory.containsKey(key)) {
+                count = searchMemory.get(key) + 1;
+            }
             searchMemory.put(key, count);
             updatePoints(key);
         }
@@ -182,9 +205,9 @@ public class UCTSearch {
     private void updatePoints(String s) {
         double result;
         if (!notGameOver()) {
-           double average = averagePoints(s);
-           double ratedBoard = rater.getBoardStateValue(s.toCharArray());
-           if (handler.getTurn() == player) {
+            double average = averagePoints(s);
+            double ratedBoard = rater.getBoardStateValue(s.toCharArray());
+            if (handler.getTurn() == player) {
                 result = average + getRegret(s) + ratedBoard;
             } else {
                 result = average - getRegret(s) + ratedBoard;
@@ -205,5 +228,9 @@ public class UCTSearch {
         }
         int visited = this.searchMemory.get(s);
         return sum / visited;
+    }
+
+    private String getCurrentStateKey() {
+        return new String(handler.getChessBoard().getBoard());
     }
 }

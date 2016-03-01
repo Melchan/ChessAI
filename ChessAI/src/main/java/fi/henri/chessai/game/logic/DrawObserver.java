@@ -49,15 +49,28 @@ public class DrawObserver {
         return false;
     }
 
+    /**
+     * Method will erase current gameState from it's memory;
+     */
+    public void rollBack() {
+
+        String key = new String(board.getBoard());
+        if (repetitionHistory.containsKey(key)) {
+            int i = repetitionHistory.get(key);
+            i--;
+            this.repetitionHistory.put(key, i);
+        }
+    }
+
     private boolean threeFoldRepetition() {
-        String data = new String(board.getBoard());
-        if (repetitionHistory.containsKey(data)) {
-            Integer value = repetitionHistory.get(data);
+        String key = new String(board.getBoard());
+        if (repetitionHistory.containsKey(key)) {
+            Integer value = repetitionHistory.get(key);
             value++;
-            repetitionHistory.put(data, value);
+            repetitionHistory.put(key, value);
             return value > 2;
         } else {
-            repetitionHistory.put(data, 1);
+            repetitionHistory.put(key, 1);
         }
         return false;
     }
@@ -71,8 +84,7 @@ public class DrawObserver {
         if (pieces.size() <= 4) {
             if (pieces.size() <= 2) {
                 return true;
-            }
-            else if (badPiecesOnBoard(pieces)) {
+            } else if (badPiecesOnBoard(pieces)) {
                 return true;
             }
         }
@@ -156,7 +168,7 @@ public class DrawObserver {
         }
         return black == white;
     }
-    
+
     private Color squareColor(int i) {
         int[] c = board.indexToCoordinates(i);
         System.out.println("x " + c[0] + " y " + c[1]);
@@ -166,7 +178,7 @@ public class DrawObserver {
             return WHITE;
         }
     }
-    
+
     private boolean isBlackSquare(int[] c) {
         if (c[0] % 2 == 0 && c[1] % 2 == 0) {
             return true;

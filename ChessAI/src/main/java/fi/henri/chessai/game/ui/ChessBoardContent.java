@@ -64,21 +64,9 @@ public class ChessBoardContent extends JPanel implements Updatetable, MouseListe
             firstPaneNumber = null;
             secondPaneNumber = null;
             updateKingThreateners();
-            //promotionHandling();
         }
-        ai.movePiece();
         refresh();
     }
-    
-    /**
-    private void promotionHandling() {
-        if (handler.getPawnPromotionIndicator()) {
-            handler.pawnPromotion(QUEEN);
-            //ChoosingWindow window = new ChoosingWindow(handler);
-            //window.run();
-        }
-    }
-    */
 
     private void updateKingThreateners() {
         this.kingThreateners = handler.getKingThreateners();
@@ -91,6 +79,8 @@ public class ChessBoardContent extends JPanel implements Updatetable, MouseListe
     private void refresh() {
         if (handler.getCheckMate()) {
             setWinningPanel();
+        } else if (handler.getDraw()) {
+            setDrawPanel();
         }
         this.revalidate();
         this.repaint();
@@ -105,9 +95,20 @@ public class ChessBoardContent extends JPanel implements Updatetable, MouseListe
         label.setText(label.getText()+ handler.getTurn() + " WON!");
         this.add(label);
     }
+    
+    private void setDrawPanel() {
+        this.removeAll();
+        this.setLayout(new GridLayout(1, 1));
+        this.setPreferredSize(new Dimension(100, 80));
+        JLabel label = new JLabel();
+        label.setText(label.getText() + " DRAW!");
+        this.add(label);
+    }
 
     private void handleLogicAction() {
-        handler.movePiece(firstPaneNumber, secondPaneNumber);
+        if (handler.movePiece(firstPaneNumber, secondPaneNumber)) {
+            ai.movePiece();
+        }
     }
 
     @Override

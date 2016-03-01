@@ -25,7 +25,7 @@ public class Node {
         this.handler = handler;
         this.state = new String(handler.getChessBoard().getBoard());
         this.moves = new MoveObserver(handler).getPossibleMoves();
-        this.states = new ArrayList<String>();
+        this.states = new ArrayList<>();
         this.moveStates = new HashMap<>();
         initializeMoveStates();
     }
@@ -38,7 +38,10 @@ public class Node {
 
     private void addMoveState(String s) {
         int[] action = getActionFromString(s);
-        handler.movePiece(action[0], action[1]);
+        if(!handler.movePiece(action[0], action[1])) {
+            System.out.println(handler.getMoveCount());
+            System.out.println(action[0] + " " + action[1]);
+        }
         String moveState = new String(handler.getChessBoard().getBoard());
         states.add(moveState);
         moveStates.put(moveState,s);
@@ -62,9 +65,8 @@ public class Node {
     }
 
     private int charToInt(char c, char v) {
-        int tens = (c + 48) + 10;
-        int single = (v + 48);
-        return tens + single;
+        String result ="" + c + v;
+        return Integer.parseInt(result);
     }
     
     public String getState() {

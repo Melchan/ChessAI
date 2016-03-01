@@ -47,7 +47,8 @@ public class MoveHandler {
      */
     public boolean movePiece(int actor, int target) {
         if (library.movePiece(actor, target)) {
-            if (isKingThreatened() == false) {
+            if (!isKingThreatened()) {
+                
                 return checkCastling(actor, target);
             }
             board.rollBack(1);

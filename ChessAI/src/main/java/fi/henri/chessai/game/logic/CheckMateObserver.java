@@ -21,13 +21,21 @@ public class CheckMateObserver {
         this.board = board;
         this.handler = new MoveHandler(board);
     }
-
+    /**
+     * will check if game is in checkMate
+     * @return 
+     */
     public boolean isCheckMate() {
         if (kingIsInCheck()) {
             int king = handler.getThreatenedKingLocation();
             ArrayList<Integer> defenders = handler.getDefenders();
             int threatCount = handler.getTheateners().size();
             int attacker = handler.getTheateners().get(0);
+            
+            if (handler.getDefenders().isEmpty() || handler.getTheateners().isEmpty()) {
+                System.out.println("kusee");
+            }
+            
             if (kingCanNotMoveToSafety(king)) {
                 if (threatCount > 1) {
                     return true;
@@ -81,7 +89,9 @@ public class CheckMateObserver {
 
         int[] k = board.indexToCoordinates(king);
         int[] a = board.indexToCoordinates(attacker);
-
+        if (defenders.isEmpty()) {
+            System.out.println(board.getMoveCount() + " when defender is empty");
+        }
         while (k[0] != a[0] || k[1] != a[1]) {
             int i = board.coordinatesToIndex(k);
             for (int d : defenders) {

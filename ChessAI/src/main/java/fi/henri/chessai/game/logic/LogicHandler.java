@@ -110,7 +110,10 @@ public class LogicHandler {
      * @param i 
      */
     public void rollBack(int i) {
+        drawObserver.rollBack();
         board.rollBack(i);
+        draw = false;
+        checkMate = false;
     }
     
     public MoveHandler getMoveHandler() {
