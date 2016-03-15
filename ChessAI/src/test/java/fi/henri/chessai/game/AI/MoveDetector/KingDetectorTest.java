@@ -6,7 +6,7 @@
 package fi.henri.chessai.game.AI.MoveDetector;
 
 import fi.henri.chessai.game.logic.LogicHandler;
-import java.util.ArrayList;
+import fi.henri.chessai.game.dataStructure.ArrayList;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import org.junit.Before;
@@ -62,14 +62,13 @@ public class KingDetectorTest {
         check.add("6052");
         check.add("6051");
         result.addAll(detector.possibleMoves(60));
-        for (String s : result) {
-            System.out.println(s);
-            assertTrue(check.contains(s));
+        int size = result.size();
+        for (int i = 0; i < size; i++) {
+            assertTrue(check.contains(result.get(i)));
         }
-        System.out.println("");
-        for (String s : check) {
-            System.out.println(s);
-            assertTrue(result.contains(s));
+        size = check.size();
+        for (int i = 0; i < size; i++) {
+            assertTrue(result.contains(check.get(i)));
         }
         assertEquals(check.size(), result.size());
     }
@@ -101,14 +100,13 @@ public class KingDetectorTest {
         check.add("0412");
         check.add("0411");
         result.addAll(detector.possibleMoves(4));
-        for (String s : result) {
-            System.out.println(s);
-            assertTrue(check.contains(s));
+        int size = result.size();
+        for (int i = 0; i < size; i++) {
+            assertTrue(check.contains(result.get(i)));
         }
-        System.out.println("");
-        for (String s : check) {
-            System.out.println(s);
-            assertTrue(result.contains(s));
+        size = check.size();
+        for (int i = 0; i < size; i++) {
+            assertTrue(result.contains(check.get(i)));
         }
         assertEquals(check.size(), result.size());
     }

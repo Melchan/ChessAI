@@ -6,6 +6,7 @@
 package fi.henri.chessai.game.AI.MoveDetector;
 
 import fi.henri.chessai.game.logic.LogicHandler;
+import fi.henri.chessai.game.dataStructure.ArrayList;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import org.junit.Before;
@@ -36,5 +37,19 @@ public class MoveObserverTest {
         assertTrue(handler.movePiece(52, 36));
         assertTrue(handler.movePiece(11, 27));
         assertEquals(31, observer.getPossibleMoves().size());
+    }
+    
+    @Test
+    public void everyMoveIsInvidual() {
+        int last = observer.getPossibleMoves().size() - 1;
+        String example = observer.getPossibleMoves().get(last);
+        ArrayList<String> list = observer.getPossibleMoves();
+        boolean result = true;
+        for (int i = 0; i < last; i++) {
+            if (example.equals(list.get(i))) {
+                result = false;
+            }
+        }
+        assertTrue(result);
     }
 }

@@ -6,12 +6,12 @@
 package fi.henri.chessai.game.ui;
 
 import fi.henri.chessai.game.AI.AI;
+import fi.henri.chessai.game.dataStructure.ArrayList;
 import fi.henri.chessai.game.logic.LogicHandler;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.util.ArrayList;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -37,9 +37,10 @@ public class ChessBoardContent extends JPanel implements Updatetable, MouseListe
         this.setLayout(new GridLayout(8, 8));
         this.setPreferredSize(new Dimension(640, 640));
         createSquaresInArrayList();
-        for (SquarePanel sp : squares) {
-            this.add(sp);
-            this.addMouseListener(sp);
+        int size = squares.size();
+        for (int i = 0; i < size; i++) {
+            this.add(squares.get(i));
+            this.addMouseListener(squares.get(i));
         }
     }
 

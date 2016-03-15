@@ -6,7 +6,7 @@
 package fi.henri.chessai.game.AI.MoveDetector;
 
 import fi.henri.chessai.game.logic.LogicHandler;
-import java.util.ArrayList;
+import fi.henri.chessai.game.dataStructure.ArrayList;
 
 /**
  *
@@ -49,8 +49,9 @@ class RookDetector extends MoveDetector {
     private ArrayList<String> rookMoves(int a) {
         ArrayList<Integer> endPoints = moveDirections(a); 
         ArrayList<String> result = new ArrayList<String>();
-        for (int t : endPoints) {
-            result.addAll(super.pathToMove(a, t));
+        int size = endPoints.size();
+        for (int i = 0; i < size; i++) {
+            result.addAll(super.pathToMove(a, endPoints.get(i)));
         }
         return result;
     }

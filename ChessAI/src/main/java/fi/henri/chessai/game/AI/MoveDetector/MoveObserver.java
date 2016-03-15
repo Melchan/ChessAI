@@ -9,7 +9,7 @@ import fi.henri.chessai.game.logic.LogicHandler;
 import fi.henri.chessai.game.logic.chessBoard.ChessBoard;
 import fi.henri.chessai.game.logic.chessBoard.ChessPiece;
 import static fi.henri.chessai.game.logic.chessBoard.ChessPiece.*;
-import java.util.ArrayList;
+import fi.henri.chessai.game.dataStructure.ArrayList;
 import java.util.HashMap;
 
 /**
@@ -53,9 +53,10 @@ public class MoveObserver {
     
     private ArrayList<String> getMoves(ArrayList<Integer> ownPieces) {
         ArrayList<String> result = new ArrayList<String>();
-        for (int i : ownPieces) {
-            ChessPiece piece = board.boardCharToChessPiece(board.getSquareContent(i));
-            result.addAll(moveDetectorLibrary.get(piece).possibleMoves(i));
+        int size = ownPieces.size();
+        for (int i = 0; i < size; i++) {
+            ChessPiece piece = board.boardCharToChessPiece(board.getSquareContent(ownPieces.get(i)));
+            result.addAll(moveDetectorLibrary.get(piece).possibleMoves(ownPieces.get(i)));
         }
         return result;
     }

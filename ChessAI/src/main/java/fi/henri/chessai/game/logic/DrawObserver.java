@@ -16,7 +16,7 @@ import static java.awt.Color.BLACK;
 import static java.awt.Color.BLUE;
 import static java.awt.Color.RED;
 import static java.awt.Color.WHITE;
-import java.util.ArrayList;
+import fi.henri.chessai.game.dataStructure.ArrayList;
 import java.util.HashMap;
 
 /**
@@ -27,9 +27,11 @@ public class DrawObserver {
 
     private ChessBoard board;
     private HashMap<String, Integer> repetitionHistory;
+    private CheckMateObserver observer;
 
-    public DrawObserver(ChessBoard board) {
+    public DrawObserver(ChessBoard board, CheckMateObserver observer) {
         this.board = board;
+        this.observer = observer;
         this.repetitionHistory = new HashMap<String, Integer>();
     }
 
@@ -45,8 +47,9 @@ public class DrawObserver {
             return true;
         } else if (checkMateIsNotPossible()) {
             return true;
+        } else {
+            return cannotMoveSingleKing();
         }
-        return false;
     }
 
     /**
@@ -86,7 +89,7 @@ public class DrawObserver {
                 return true;
             } else if (badPiecesOnBoard(pieces)) {
                 return true;
-            }
+            } 
         }
         return false;
     }
@@ -104,8 +107,9 @@ public class DrawObserver {
 
     private boolean badPiecesOnBoard(ArrayList<Character> pieces) {
         ArrayList<ChessPiece> names = new ArrayList<>();
-        for (Character c : pieces) {
-            names.add(board.boardCharToChessPiece(c));
+        int size = pieces.size();
+        for (int i = 0; i < size; i++) {
+            names.add(board.boardCharToChessPiece(pieces.get(i)));
         }
         if (identicalKingAndBishopOnBothSides(names)) {
             return true;
@@ -120,8 +124,9 @@ public class DrawObserver {
     }
 
     private boolean kingAndBishop(ArrayList<ChessPiece> names) {
-        for (ChessPiece p : names) {
-            if (p == WHITEBISHOP || p == BLACKBISHOP) {
+        int size = names.size();
+        for (int i = 0; i < size; i++) {
+            if (names.get(i) == WHITEBISHOP || names.get(i) == BLACKBISHOP) {
                 return true;
             }
         }
@@ -131,10 +136,11 @@ public class DrawObserver {
     private boolean identicalKingAndBishopOnBothSides(ArrayList<ChessPiece> names) {
         boolean white = false;
         boolean black = false;
-        for (ChessPiece p : names) {
-            if (p == WHITEBISHOP) {
+        int size = names.size();
+        for (int i = 0; i < size; i++) {
+            if (names.get(i) == WHITEBISHOP) {
                 white = true;
-            } else if (p == BLACKBISHOP) {
+            } else if (names.get(i) == BLACKBISHOP) {
                 black = true;
             }
         }
@@ -145,8 +151,9 @@ public class DrawObserver {
     }
 
     private boolean kingAndKnight(ArrayList<ChessPiece> names) {
-        for (ChessPiece p : names) {
-            if (p == WHITEKNIGHT || p == BLACKKNIGHT) {
+        int size = names.size();
+        for (int i = 0; i < size; i++) {
+            if (names.get(i) == WHITEKNIGHT || names.get(i) == BLACKKNIGHT) {
                 return true;
             }
         }
@@ -186,5 +193,9 @@ public class DrawObserver {
             return true;
         }
         return false;
+    }
+
+    private boolean cannotMoveSingleKing() {
+        return observer.kingCannotMove();
     }
 }

@@ -13,7 +13,7 @@ import java.awt.Color;
 import static java.awt.Color.BLACK;
 import static java.awt.Color.WHITE;
 import static java.awt.Color.YELLOW;
-import java.util.ArrayList;
+import fi.henri.chessai.game.dataStructure.ArrayList;
 
 /**
  *
@@ -89,10 +89,11 @@ public class MoveHandler {
     public boolean isKingThreatened() {
         initializeCheckChecker();
         boolean result = false;
-        for (int a : attackers) {
-            if (library.movePiece(a, king)) {
+        int size = attackers.size();
+        for (int i = 0; i < size; i++) {
+            if (library.movePiece(attackers.get(i), king)) {
                 board.rollBack(1);
-                this.threateners.add(a);
+                this.threateners.add(attackers.get(i));
                 result = true;
             }
         }

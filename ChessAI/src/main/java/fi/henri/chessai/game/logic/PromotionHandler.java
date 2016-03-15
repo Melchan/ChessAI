@@ -24,11 +24,9 @@ class PromotionHandler {
      */
     public void checkAndPromote() {
         for (int i = 0; i < 8; i++) {
-            System.out.println("i is " + i);
             ifSoldierPromote(i);
         }
         for (int i = 56; i < 64; i++) {
-            System.out.println("i is " + i);
             ifSoldierPromote(i);
         }
     }
@@ -41,7 +39,6 @@ class PromotionHandler {
     }
 
     private void promote(int a) {
-        System.out.println("minä teen työtä");
         char c;
         if (a < 40) {
             c = 10;

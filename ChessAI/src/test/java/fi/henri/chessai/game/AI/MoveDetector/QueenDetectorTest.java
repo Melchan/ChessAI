@@ -6,7 +6,7 @@
 package fi.henri.chessai.game.AI.MoveDetector;
 
 import fi.henri.chessai.game.logic.LogicHandler;
-import java.util.ArrayList;
+import fi.henri.chessai.game.dataStructure.ArrayList;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import org.junit.Before;
@@ -43,11 +43,13 @@ public class QueenDetectorTest {
         check.add("5648");
         check.add("5640");
         result.addAll(detector.possibleMoves(56));
-        for (String s : result) {
-            assertTrue(check.contains(s));
+        int size = result.size();
+        for (int i = 0; i < size; i++) {
+            assertTrue(check.contains(result.get(i)));
         }
-        for (String s : check) {
-            assertTrue(result.contains(s));
+        size = check.size();
+        for (int i = 0; i < size; i++) {
+            assertTrue(result.contains(check.get(i)));
         }
 
         assertEquals(check.size(), result.size());
@@ -64,11 +66,13 @@ public class QueenDetectorTest {
         check.add("6116");
 
         result.addAll(detector.possibleMoves(61));
-        for (String s : result) {
-            assertTrue(check.contains(s));
+        int size = result.size();
+        for (int i = 0; i < size; i++) {
+            assertTrue(check.contains(result.get(i)));
         }
-        for (String s : check) {
-            assertTrue(result.contains(s));
+        size = check.size();
+        for (int i = 0; i < size; i++) {
+            assertTrue(result.contains(check.get(i)));
         }
         assertEquals(check.size(), result.size());
     }
@@ -98,11 +102,13 @@ public class QueenDetectorTest {
 
         result.addAll(detector.possibleMoves(25));
         System.out.println(result.size() + " " + check.size());
-        for (String s : result) {
-            assertTrue(check.contains(s));
+        int size = result.size();
+        for (int i = 0; i < size; i++) {
+            assertTrue(check.contains(result.get(i)));
         }
-        for (String s : check) {
-            assertTrue(result.contains(s));
+        size = check.size();
+        for (int i = 0; i < size; i++) {
+            assertTrue(result.contains(check.get(i)));
         }
         assertEquals(check.size(), result.size());
     }

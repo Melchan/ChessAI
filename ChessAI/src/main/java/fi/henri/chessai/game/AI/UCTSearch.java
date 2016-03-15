@@ -7,7 +7,7 @@ package fi.henri.chessai.game.AI;
 
 import fi.henri.chessai.game.logic.LogicHandler;
 import java.awt.Color;
-import java.util.ArrayList;
+import fi.henri.chessai.game.dataStructure.ArrayList;
 import java.util.HashMap;
 
 /**
@@ -19,9 +19,9 @@ public class UCTSearch {
     private final int win = 4006;
     private final int draw = 0;
     private final int lose = -4006;
-    private final double explorationConstant = 0.5;
-    private final int iterations = 100;
-    private final int depth = 10;
+    private final double explorationConstant = 0.3;
+    private final int iterations = 1000;
+    private final int depth = 12;
 
     private LogicHandler handler;
     private HashMap<String, Double> pointMemory;
@@ -50,21 +50,27 @@ public class UCTSearch {
             backUp(turnCount);
             time--;
         }
-        selectMove(getCurrentStateKey());
+        if (notGameOver()) {
+            selectMove(getCurrentStateKey());
+        }
         tree.clear();
     }
 
     private void simTree() {
         int t = depth;
         while (t > 0 && notGameOver()) {
-            String key = getCurrentStateKey();
-            if (!tree.containsKey(key)) {
-                tree.put(key, new Node(handler));
-            }
-            if (!notGameOver()) {
+            if (notGameOver()) {
+                String key = getCurrentStateKey();
+                if (!tree.containsKey(key)) {
+                    tree.put(key, new Node(handler));
+                }
+
                 selectMove(key);
+
+                t--;
+            } else {
+                break;
             }
-            t--;
         }
     }
 
@@ -74,9 +80,10 @@ public class UCTSearch {
 
     private void selectMove(String key) {
         ArrayList<String> bestMoves = rateAllMovesInCurrentStateGiveBiggest(key);
-        int[] move = chooseMove(bestMoves, key);
-        handler.movePiece(move[0], move[1]);
-
+        if (notGameOver() && !bestMoves.isEmpty()) {
+            int[] move = chooseMove(bestMoves, key);
+            handler.movePiece(move[0], move[1]);
+        }
     }
 
     private ArrayList<String> rateAllMovesInCurrentStateGiveBiggest(String key) {
@@ -85,9 +92,10 @@ public class UCTSearch {
         }
         ArrayList<String> states = tree.get(key).getMoveStates();
         ArrayList<String> movePoints = new ArrayList<>();
-        for (String s : states) {
-            setPoints(s);
-            keepRightPoints(s, movePoints);
+        int size = states.size();
+        for (int i = 0; i < size; i++) {
+            setPoints(states.get(i));
+            keepRightPoints(states.get(i), movePoints);
         }
         return movePoints;
     }
@@ -176,6 +184,7 @@ public class UCTSearch {
         int index = (int) ((double) size * random);
         String key = bestMoves.get(index);
         return tree.get(node).getMove(key);
+
     }
 
     private double endGamePoints() {
@@ -221,9 +230,10 @@ public class UCTSearch {
     private double averagePoints(String s) {
         ArrayList<String> list = tree.get(s).getMoveStates();
         double sum = 0;
-        for (String k : list) {
-            if (pointMemory.containsKey(k)) {
-                sum += pointMemory.get(k);
+        int size = list.size();
+        for (int i = 0; i < size; i++) {
+            if (pointMemory.containsKey(list.get(i))) {
+                sum += pointMemory.get(list.get(i));
             }
         }
         int visited = this.searchMemory.get(s);

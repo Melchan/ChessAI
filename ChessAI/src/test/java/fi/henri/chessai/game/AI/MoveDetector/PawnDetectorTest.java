@@ -6,7 +6,7 @@
 package fi.henri.chessai.game.AI.MoveDetector;
 
 import fi.henri.chessai.game.logic.LogicHandler;
-import java.util.ArrayList;
+import fi.henri.chessai.game.dataStructure.ArrayList;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import org.junit.Before;
@@ -35,11 +35,13 @@ public class PawnDetectorTest {
         check.add("4840");
         check.add("4832");
         result.addAll(detector.possibleMoves(48));
-        for (String s : result) {
-            assertTrue(check.contains(s));
+        int size = result.size();
+        for (int i = 0; i < size; i++) {
+            assertTrue(check.contains(result.get(i)));
         }
-        for (String s : check) {
-            assertTrue(result.contains(s));
+        size = check.size();
+        for (int i = 0; i < size; i++) {
+            assertTrue(result.contains(check.get(i)));
         }
         assertEquals(check.size(), result.size());
     }
@@ -50,11 +52,13 @@ public class PawnDetectorTest {
         check.add("1220");
         check.add("1228");
         result.addAll(detector.possibleMoves(12));
-        for (String s : result) {
-            assertTrue(check.contains(s));
+        int size = result.size();
+        for (int i = 0; i < size; i++) {
+            assertTrue(check.contains(result.get(i)));
         }
-        for (String s : check) {
-            assertTrue(result.contains(s));
+        size = check.size();
+        for (int i = 0; i < size; i++) {
+            assertTrue(result.contains(check.get(i)));
         }
         assertEquals(check.size(), result.size());
     }
@@ -66,11 +70,13 @@ public class PawnDetectorTest {
         check.add("3527");
         check.add("3528");
         result.addAll(detector.possibleMoves(35));
-        for (String s : result) {
-            assertTrue(check.contains(s));
+        int size = result.size();
+        for (int i = 0; i < size; i++) {
+            assertTrue(check.contains(result.get(i)));
         }
-        for (String s : check) {
-            assertTrue(result.contains(s));
+        size = check.size();
+        for (int i = 0; i < size; i++) {
+            assertTrue(result.contains(check.get(i)));
         }
     }
     
@@ -83,11 +89,13 @@ public class PawnDetectorTest {
         check.add("2821");
         check.add("2820");
         result.addAll(detector.possibleMoves(28));
-        for (String s : result) {
-            assertTrue(check.contains(s));
+        int size = result.size();
+        for (int i = 0; i < size; i++) {
+            assertTrue(check.contains(result.get(i)));
         }
-        for (String s : check) {
-            assertTrue(result.contains(s));
+        size = check.size();
+        for (int i = 0; i < size; i++) {
+            assertTrue(result.contains(check.get(i)));
         }
         assertEquals(check.size(), result.size());
     }
@@ -99,11 +107,13 @@ public class PawnDetectorTest {
         assertTrue(handler.movePiece(35, 27));
         check.add("1119");
         result.addAll(detector.possibleMoves(11));
-        for (String s : result) {
-            assertTrue(check.contains(s));
+        int size = result.size();
+        for (int i = 0; i < size; i++) {
+            assertTrue(check.contains(result.get(i)));
         }
-        for (String s : check) {
-            assertTrue(result.contains(s));
+        size = check.size();
+        for (int i = 0; i < size; i++) {
+            assertTrue(result.contains(check.get(i)));
         }
         assertEquals(check.size(), result.size());
     }

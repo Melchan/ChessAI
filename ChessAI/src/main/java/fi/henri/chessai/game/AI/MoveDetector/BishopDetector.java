@@ -6,7 +6,7 @@
 package fi.henri.chessai.game.AI.MoveDetector;
 
 import fi.henri.chessai.game.logic.LogicHandler;
-import java.util.ArrayList;
+import fi.henri.chessai.game.dataStructure.ArrayList;
 
 /**
  *
@@ -21,9 +21,10 @@ class BishopDetector extends MoveDetector {
     @Override
     public ArrayList<String> possibleMoves(int location) {
         ArrayList<String> result = new ArrayList<String>();
-        
-        for (int t : endPoints(location)) {
-            result.addAll(super.pathToMove(location, t));
+        ArrayList<Integer> endPoints = endPoints(location);
+        int size = endPoints.size();
+        for (int i = 0; i < size; i++) {
+            result.addAll(super.pathToMove(location, endPoints.get(i)));
         }
         
         return result;

@@ -6,7 +6,7 @@
 package fi.henri.chessai.game.logic;
 
 import fi.henri.chessai.game.logic.chessBoard.ChessBoard;
-import java.util.ArrayList;
+import fi.henri.chessai.game.dataStructure.ArrayList;
 
 /**
  *
@@ -16,33 +16,44 @@ public class CheckMateObserver {
 
     private ChessBoard board;
     private MoveHandler handler;
+    private boolean kingAloneImmobile;
 
     public CheckMateObserver(ChessBoard board) {
         this.board = board;
         this.handler = new MoveHandler(board);
+        this.kingAloneImmobile = false;
     }
+
     /**
      * will check if game is in checkMate
-     * @return 
+     *
+     * @return
      */
     public boolean isCheckMate() {
+        this.kingAloneImmobile = false;
         if (kingIsInCheck()) {
             int king = handler.getThreatenedKingLocation();
             ArrayList<Integer> defenders = handler.getDefenders();
             int threatCount = handler.getTheateners().size();
             int attacker = handler.getTheateners().get(0);
-            
-            if (handler.getDefenders().isEmpty() || handler.getTheateners().isEmpty()) {
-                System.out.println("kusee");
+
+            if (defenders.size() > 16) {
+                System.out.println("liar liar pans of fire");
             }
-            
+
+            if (handler.getDefenders().isEmpty() || handler.getTheateners().isEmpty()) {
+                System.out.println("ChechMateObserver has trouble");
+            }
+
             if (kingCanNotMoveToSafety(king)) {
                 if (threatCount > 1) {
                     return true;
                 } else if (enemyCanBeEaten(attacker, defenders)) {
                     return false;
+                } else if (enemyCanNotBeBlocked(king, attacker, defenders)) {
+                    return true;
                 } else {
-                    return enemyCanNotBeBlocked(king, attacker, defenders);
+                    checkIfKingIsAloneAndImmobile(defenders, king);
                 }
             }
         }
@@ -76,8 +87,12 @@ public class CheckMateObserver {
     }
 
     private boolean enemyCanBeEaten(int attacker, ArrayList<Integer> defenders) {
-        for (int d : defenders) {
-            if (handler.movePiece(d, attacker)) {
+        if (defenders.isEmpty()) {
+            System.out.println(board.getMoveCount() + " when defender is empty");
+        }
+        int size = defenders.size();
+        for (int i = 0; i < size; i++) {
+            if (handler.movePiece(defenders.get(i), attacker)) {
                 board.rollBack(1);
                 return true;
             }
@@ -94,8 +109,10 @@ public class CheckMateObserver {
         }
         while (k[0] != a[0] || k[1] != a[1]) {
             int i = board.coordinatesToIndex(k);
-            for (int d : defenders) {
-                if (handler.movePiece(d, i)) {
+            int size = defenders.size();
+            for (int d = 0; d < size; d++) {
+                System.out.println(defenders.get(d) + " " + i);
+                if (handler.movePiece(defenders.get(d), i)) {
                     board.rollBack(1);
                     return false;
                 }
@@ -117,5 +134,15 @@ public class CheckMateObserver {
             }
         }
         return a;
+    }
+
+    public boolean kingCannotMove() {
+        return this.kingAloneImmobile;
+    }
+
+    private void checkIfKingIsAloneAndImmobile(ArrayList<Integer> defenders, int king) {
+        if (defenders.size() <= 1) {
+            this.kingAloneImmobile = kingCanNotMoveToSafety(king);
+        }
     }
 }

@@ -18,13 +18,15 @@ public class DrawObserverTest {
 
     private ChessBoard board;
     private DrawObserver observer;
-    char w;
-    char b;
+    private CheckMateObserver CMObserver;
+    private char w;
+    private char b;
 
     @Before
     public void setUp() {
         this.board = new ChessBoard();
-        this.observer = new DrawObserver(board);
+        this.CMObserver = new CheckMateObserver(board);
+        this.observer = new DrawObserver(board, CMObserver);
     }
 
     @Test
@@ -194,3 +196,4 @@ public class DrawObserverTest {
     }
 }
 // Three fold repetition is tested in logicHandlerTest
+// King alone and cannot move checked in check Mate observer.

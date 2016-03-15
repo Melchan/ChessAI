@@ -6,7 +6,7 @@
 package fi.henri.chessai.game.AI.MoveDetector;
 
 import fi.henri.chessai.game.logic.LogicHandler;
-import java.util.ArrayList;
+import fi.henri.chessai.game.dataStructure.ArrayList;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import org.junit.Before;
@@ -43,11 +43,13 @@ public class RookDetectorTest {
         check.add("5648");
         check.add("5640");
         result.addAll(detector.possibleMoves(56));
-        for (String s : result) {
-            assertTrue(check.contains(s));
+        int size = result.size();
+        for (int i = 0; i < size; i++) {
+            assertTrue(check.contains(result.get(i)));
         }
-        for (String s : check) {
-            assertTrue(result.contains(s));
+        size = check.size();
+        for (int i = 0; i < size; i++) {
+            assertTrue(result.contains(check.get(i)));
         }
         assertEquals(check.size(), result.size());
     }
@@ -68,11 +70,13 @@ public class RookDetectorTest {
         check.add("4046");
         check.add("4047");
         result.addAll(detector.possibleMoves(40));
-        for (String s : result) {
-            assertTrue(check.contains(s));
+        int size = result.size();
+        for (int i = 0; i < size; i++) {
+            assertTrue(check.contains(result.get(i)));
         }
-        for (String s : check) {
-            assertTrue(result.contains(s));
+        size = check.size();
+        for (int i = 0; i < size; i++) {
+            assertTrue(result.contains(check.get(i)));
         }
         assertEquals(check.size(), result.size());
     }
@@ -98,11 +102,13 @@ public class RookDetectorTest {
         check.add("4109");
 
         result.addAll(detector.possibleMoves(41));
-        for (String s : result) {
-            assertTrue(check.contains(s));
+        int size = result.size();
+        for (int i = 0; i < size; i++) {
+            assertTrue(check.contains(result.get(i)));
         }
-        for (String s : check) {
-            assertTrue(result.contains(s));
+        size = check.size();
+        for (int i = 0; i < size; i++) {
+            assertTrue(result.contains(check.get(i)));
         }
         assertEquals(check.size(), result.size());
     }
@@ -118,11 +124,13 @@ public class RookDetectorTest {
         check.add("4044");
         
         result.addAll(detector.possibleMoves(40));
-        for (String s : result) {
-            assertTrue(check.contains(s));
+        int size = result.size();
+        for (int i = 0; i < size; i++) {
+            assertTrue(check.contains(result.get(i)));
         }
-        for (String s : check) {
-            assertTrue(result.contains(s));
+        size = check.size();
+        for (int i = 0; i < size; i++) {
+            assertTrue(result.contains(check.get(i)));
         }
         assertEquals(check.size(), result.size());
     }

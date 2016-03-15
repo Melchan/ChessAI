@@ -5,10 +5,10 @@
  */
 package fi.henri.chessai.game.logic;
 
+import fi.henri.chessai.game.dataStructure.ArrayList;
 import fi.henri.chessai.game.logic.chessBoard.ChessBoard;
 import fi.henri.chessai.game.logic.chessBoard.ChessBoardInitializer;
 import java.awt.Color;
-import java.util.ArrayList;
 
 /**
  *
@@ -36,9 +36,9 @@ public class LogicHandler {
         this.initializer = new ChessBoardInitializer(board);
         this.handler = new MoveHandler(board);
         this.observer = new CheckMateObserver(board);
-        this.drawObserver = new DrawObserver(board);
+        this.drawObserver = new DrawObserver(board, observer);
         this.initializer.newGame();
-        
+
     }
 
     /**
@@ -65,7 +65,6 @@ public class LogicHandler {
                 validateDraw();
                 return true;
             }
-            
             this.updateThreateners();
         }
         return false;
@@ -74,7 +73,7 @@ public class LogicHandler {
     private void validateCheckMate() {
         this.checkMate = observer.isCheckMate();
     }
-    
+
     public boolean getCheckMate() {
         return checkMate;
     }
@@ -82,22 +81,24 @@ public class LogicHandler {
     public ArrayList<Integer> getKingThreateners() {
         return this.threatenersForUser;
     }
-    
+
     private void updateThreateners() {
         this.threatenersForUser = handler.getTheateners();
     }
-    
+
     public ChessBoard getChessBoard() {
         return board;
     }
+
     /**
      * will return turn of the player currently moving.
-     * @return 
+     *
+     * @return
      */
     public Color getTurn() {
         return board.getTurn();
     }
-    
+
     public boolean getDraw() {
         return this.draw;
     }
@@ -105,9 +106,11 @@ public class LogicHandler {
     private void validateDraw() {
         this.draw = drawObserver.isDraw();
     }
+
     /**
      * rolls game backwards wished amount of turns. Intended to AI use.
-     * @param i 
+     *
+     * @param i
      */
     public void rollBack(int i) {
         drawObserver.rollBack();
@@ -115,11 +118,11 @@ public class LogicHandler {
         draw = false;
         checkMate = false;
     }
-    
+
     public MoveHandler getMoveHandler() {
         return this.handler;
     }
-    
+
     public int getMoveCount() {
         return this.board.getMoveCount();
     }

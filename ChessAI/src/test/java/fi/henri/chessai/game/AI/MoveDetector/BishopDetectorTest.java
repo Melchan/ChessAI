@@ -6,7 +6,7 @@
 package fi.henri.chessai.game.AI.MoveDetector;
 
 import fi.henri.chessai.game.logic.LogicHandler;
-import java.util.ArrayList;
+import fi.henri.chessai.game.dataStructure.ArrayList;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import org.junit.Before;
@@ -47,11 +47,13 @@ public class BishopDetectorTest {
         check.add("6116");
 
         result.addAll(detector.possibleMoves(61));
-        for (String s : result) {
-            assertTrue(check.contains(s));
+        int size = result.size();
+        for (int i = 0; i < size; i++) {
+            assertTrue(check.contains(result.get(i)));
         }
-        for (String s : check) {
-            assertTrue(result.contains(s));
+        size = check.size();
+        for (int i = 0; i < size; i++) {
+            assertTrue(result.contains(check.get(i)));
         }
         assertEquals(check.size(), result.size());
     }
@@ -72,11 +74,13 @@ public class BishopDetectorTest {
         check.add("2532");
 
         result.addAll(detector.possibleMoves(25));
-        for (String s : result) {
-            assertTrue(check.contains(s));
+        int size = check.size();
+        for (int i = 0; i < size; i++) {
+            assertTrue(result.contains(check.get(i)));
         }
-        for (String s : check) {
-            assertTrue(result.contains(s));
+        size = result.size();
+        for (int i = 0; i < size; i++) {
+            assertTrue(check.contains(result.get(i)));
         }
         assertEquals(check.size(), result.size());
     }

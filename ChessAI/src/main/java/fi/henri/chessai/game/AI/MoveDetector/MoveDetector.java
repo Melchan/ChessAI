@@ -9,7 +9,7 @@ import fi.henri.chessai.game.logic.LogicHandler;
 import fi.henri.chessai.game.logic.MoveHandler;
 import fi.henri.chessai.game.logic.chessBoard.ChessBoard;
 import static fi.henri.chessai.game.logic.chessBoard.ChessPiece.NOTCHESSPIECE;
-import java.util.ArrayList;
+import fi.henri.chessai.game.dataStructure.ArrayList;
 
 /**
  *

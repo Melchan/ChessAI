@@ -6,8 +6,8 @@
 package fi.henri.chessai.game.AI.MoveDetector;
 
 import fi.henri.chessai.game.logic.LogicHandler;
-import java.util.ArrayList;
-import java.util.Collection;
+import fi.henri.chessai.game.dataStructure.ArrayList;
+
 
 /**
  *

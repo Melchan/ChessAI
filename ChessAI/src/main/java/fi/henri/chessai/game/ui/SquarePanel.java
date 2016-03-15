@@ -15,7 +15,7 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.util.ArrayList;
+import fi.henri.chessai.game.dataStructure.ArrayList;
 import javax.swing.BoxLayout;
 import javax.swing.JLayeredPane;
 
@@ -76,7 +76,8 @@ public class SquarePanel extends JLayeredPane implements MouseListener {
     private boolean isThreateningKing() {
         ArrayList<Integer> threats = chessBoardContent.getKingThreateners();
         if (threats != null) {
-            for (int i : threats) {
+            int size = threats.size();
+            for (int i = 0; i < size; i++) {
                 if (i == this.panel) {
                     return true;
                 }

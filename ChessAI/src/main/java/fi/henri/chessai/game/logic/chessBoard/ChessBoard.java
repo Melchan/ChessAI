@@ -9,7 +9,7 @@ import java.awt.Color;
 import static java.awt.Color.BLACK;
 import static java.awt.Color.WHITE;
 import static java.awt.Color.YELLOW;
-import java.util.ArrayList;
+import fi.henri.chessai.game.dataStructure.ArrayList;
 
 /**
  * Core class for everything. Has current board position and board position
@@ -234,9 +234,7 @@ public class ChessBoard {
     }
 
     private void eraseHistory(int n) {
-        for (int i = 0; i < n; i++) {
-            this.boardHistory.remove(boardHistory.size() - 1);
-        }
+        boardHistory.remove(n);
     }
 
     /**

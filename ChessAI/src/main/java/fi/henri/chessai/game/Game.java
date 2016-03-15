@@ -9,6 +9,7 @@ import fi.henri.chessai.game.AI.AI;
 import fi.henri.chessai.game.logic.LogicHandler;
 import fi.henri.chessai.game.ui.UI;
 import static java.awt.Color.BLACK;
+import static java.awt.Color.WHITE;
 
 /**
  *
