@@ -23,7 +23,7 @@ public class HashMap<K, V> {
      * Initializes hashMap to starting state.
      */
     public void clear() {
-        this.lenght = 64;
+        this.lenght = 4;
         this.storage = 0;
         this.list = new HashMapStorage[lenght];
         this.list[0] = new HashMapStorage<>(null, null);
@@ -44,7 +44,7 @@ public class HashMap<K, V> {
         }
         list[index] = new HashMapStorage(key, value);
         handleStorageSpace();
-        
+
     }
 
     /**
@@ -55,9 +55,7 @@ public class HashMap<K, V> {
      */
     public V get(K key) {
         int index = getIndex(key);
-        if (index >= lenght) {
-            return null;
-        } else if (list[index] == null) {
+        if (list[index] == null) {
             return null;
         }
         return list[index].getValue();
@@ -103,7 +101,7 @@ public class HashMap<K, V> {
             index++;
             if (index >= lenght) {
                 this.increaseStorageSpace();
-                return getIndex(key);            
+                return getIndex(key);
             }
         }
 
@@ -116,8 +114,6 @@ public class HashMap<K, V> {
             increaseStorageSpace();
             for (int i = 0; i < tempList.length; i++) {
                 HashMapStorage<K, V> temp = tempList[i];
-                if (temp == null) {
-                }
                 if (temp != null) {
                     this.put(temp.getKey(), temp.getValue());
                 }

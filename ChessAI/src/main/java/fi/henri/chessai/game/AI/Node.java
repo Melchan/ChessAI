@@ -10,7 +10,6 @@ import fi.henri.chessai.game.logic.LogicHandler;
 import fi.henri.chessai.game.dataStructure.ArrayList;
 import fi.henri.chessai.game.dataStructure.HashMap;
 
-
 /**
  *
  * @author manhenri
@@ -76,8 +75,10 @@ public class Node {
     public String getState() {
         return state;
     }
+
     /**
      * Gives move which to use in order to get to next state in question.
+     *
      * @param state
      * @return move int array form.
      */
