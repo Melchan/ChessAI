@@ -1,0 +1,7 @@
+Shakki peli noudattaa paria poikkeusta lukuun ottamatta normaaleja shakki pelin sääntöjä. 
+1. Kun sotilas pääsee vastakkaiseen laitaan voidaan se vain ylentää kuningattareksi. 
+2. 50 vuoroa ilman, että nappulaa on syöty tasapeli sääntö on muutettu 50 vuoron maksimi vuoro rajaan.
+3. Ihmis pelaaja voi pelata vain valkoisilla. 
+
+Tasapeli ilmoitetaan näytösssä näkyvällä "DRAW!" tekstillä tai sillä, että teko-äly ei saa tehtyä omaa siirtoaan. 
+Voitto ruutu tulee kun jompikumpi pelaaja voittaa. Silloin ohjelma pitää sulkea, että voi pelata uuden pelin.

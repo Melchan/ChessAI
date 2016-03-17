@@ -1,0 +1,70 @@
+Testaus ja tehokkuus dokumentaatio. 
+
+Omaa heikkoa versiotani uct algoritmistä on kokeiltu shreddercomputer(1) sivuston bottia vastaan. Oma teko-älyni hävisi aina.
+Paljastaen omia heikkouksiaan näin tehdessään. Samalla tulin kokeilleeksi muuten algoritmin bugisuutta monipuolisissa peleissä. 
+Löysin muutamia aikaisemmin huomaamatta jääneita ja tuhosin ne. 
+
+
+ShredderComputerin bottia vastaan kokeilin omaa bottiani kolmella vaikeus asteella, ja huomasin muutaman alueen missä omani
+häviää. Tekoälyni on hitaampi. Todennäköisesti johtuen heikosta tavasta laskea jokaisen mahdollisen seuraavan siirron tulos. 
+ennen kuin päättää satunnaisia kokeilu polkuja. Hidastaen toimintaa turhaan mahdollisuuksilla joita ei edes kohdata. 
+Käyden saman asian pariin otteeseen läpi. Tällä on pyritty tasoittamaan algoritmin satunnaisuutta, että peli ei tekisi väärää
+siirtoa. Huomasin tämän ongelman tutkiessani ongelmaa oman hahsmappini kanssa, että toteutuksessani nodet, jotka hakevat 
+kaikki mahdolliset seuraavat siirrot on hieman turhan tehoton. Sen lisäksi siirroissa takaisin päin paalaava toiminto 
+rullaa vain nykyistä laudan tilannetta siirto kerrallaan taaksepäin.
+
+Eli ensimmäinen ongelma omassa teko-älyssäni on itse algoritmin heikko toteutus. Oma shakki peli toteutukseni ei myöskään 
+ole tehokkain mahdollinen hidastaen algoritmin simulaatio vaihetta lisää. Toinen ongelma tulee vastaan itse algoritmissa. 
+UTC algoritmi on seuraa stokastista heurestiikkaa, missä se käyttää hyväkseen UCB1 algoritmiä (2). Shakissa on mahdollista
+pilata omaa peliään niin paljon enemmän huonolla siirrolla suhteutettuna esim. GO peliin. Tämän aiheuttaessa sen, että jos
+shakissa valitsee väärän siirron kyseisen algoritmin satunnaisuuden kautta voi se aiheuttaa suurempia menetyksiä kuin esim.
+alpha-beta puuhaku algoritmi. 
+
+Kolmas aihe joka on heikompi omassa shakki teko-äly toteutuksessani on laudan pisteytys. Aiheesta löytyy paljon kirjallisuuta
+ja parhaimmat shakki teko-älyt keskittyvät pisteytyksen tehokkuuteen auttaakseen teko-älyä tekemään oikeita päätöksiä. 
+Käytin itse Hans-Berlinerin (3) systeemin pisteytystä nappuloille, mutta en mennyt yksityis kohtiin missä lasketaan avointa tilaa
+ja puolustuksen vahvuutta. Eli oma teko-älyni mittasi vain ns. materiaalista tilannetta, mutta ei ottanut huomioon mitään muuta. 
+esimerkki caprovin systeemistä (4). 
+
+Tämä oli selkeästi taito tasoani haastavampi algoritmi missä huomasin ongelman yrittäessäni ymmärtää UCB1 algoritmiä mikä
+toimii UCT:n taustalla (5) Tästä sain innostusta opiskella enemmän matematiikkaa. 
+
+
+Tapoja miten pystyisin parantamaan algoritmiä sopivan ajan kanssa löytyy monia. Edellä mainitut ongelmat algoritmin valintaa
+lukuun ottamatta pystytään pienentämään ja näkemään paremmassa valossa UCT:n tehokkuus Shakin kanssa. Voi olla että 
+heikko toteutukseni on vaikuttanut lopputulemaan algoritmin tehokkuudesta liikaa, mutta toisin kuin esim. GO:n luonne on erilainen siinä, että 
+pienemmällä virheellä on suurempi vaikutus verraten shakkiin. Samaan aikaan toisin kuin GO:ssa shakissa laudan tilannetta voi mielekkäästi
+verrata toiseen laudantilanteeseen ja antaa arvio kyseisen laudantilanteen voimakkuudesta suhteessa toiseen laudantilanteeseen.
+Mikä ei taas ole mahdollista GO:ssa, koska GO:ssa merkitsee niin paljon miten kyseiseen tilanteeseen on päädytty (2). 
+
+Paremmalla laudan pisteytys funktiolla olisin pystynyt parantamaan oman algoritmini tehoa. Yleisin keskittymisen aihe shakki teko-älyissä. 
+Sitten pelattavan shakkipelin tehokkaampi toteutus auttaa siinä kuinka paljon teko-äly ehtii pelaamaan itseään vastaan shakkia ja arvioimaan 
+paremmin seuraavan siirron tehokkuutta. Algoritmin parempi toteutus on viimeinen mihin haluan ottaa kantaa. Sain selville
+valitettavan myöhäisessä vaiheessa ajan käytön kannalta miten olisin saanut toteutettua satunnaisuuden poiston simulaatioiden 
+jälkeen tehtävässä pelaajaa vastaan tehtävässä siirrossa. Olisin muokannut pisteytystä viimeistä valintaa tehdessä niin, että
+tutkimattomien siirtojen antama pistemäärä olisi nolla, jolloinka tutkimattomien haarojen antamaa piste bonusta ei oteta
+huomioon siirtoa tehdessä. Antamalla vakiokertoimelle c arvon nolla tämän olisi saanut toteutettua (6). Tämä olisi vaatinut 
+fixumpaa toteutusta kuin mitä minä olin käyttänyt. Esim. Muokkaamalla jokaisesta pistelaskusta oma olionsa. 
+
+ArrayList ja HashMap toteutukseni. Ovat tehokkuudeltaan ja muisti nälkäisyydeltään tehottomampia kuin javan standardi kirjaston 
+toteutukset. Molemmissa on toteutettu vain tähän kyseiseen tarkoitukseen tarpeelliset metodit. HashMapin toteutus käyttää
+jakojäännös menetelmää valitessaan paikkaa listasta avaimelle ja ylivuodot on käsitelty lineaarisilla kokeilujonoilla. (7)
+ArrayList ratkaisuni on hyvin yksinkertainen. 
+
+Testauksesta: 
+Monet pelit ja teko-älyn valitsemien siirtojen lopputulokset ovat auttaneet huomaamaan ja korjaamaan monia vikoja perus pelin 
+koodissa. Jonka olen ohjelmoinut joulun javalabran jälkeen. Pohjautuen joulu labraan. Yksikkö testaus tässä uudessa koodissa
+on heikompaa, mutta sillä on parempia ominaisuuksia soveltuen paremmin tähän projekti työhön. 
+
+Pseudokoodi jonka pohjalta toteutin algoritmin: 
+sivu 7: http://www.cs.utexas.edu/~pstone/Courses/394Rspring13/resources/mcrave.pdf
+
+
+Lähteet:
+(1) http://www.shredderchess.com/play-chess-online.html
+(2) sivut 1-7 http://www.cs.utexas.edu/~pstone/Courses/394Rspring13/resources/mcrave.pdf
+(3) https://en.wikipedia.org/wiki/Chess_piece_relative_value
+(4) http://chessthinkingsystems2.blogspot.fi/p/karpov-system-complete-chess-accounting.html
+(5) http://jeremykun.com/2013/10/28/optimism-in-the-face-of-uncertainty-the-ucb1-algorithm/
+(6) https://www.cs.helsinki.fi/u/kviiri/kandi/mcts_ja_peliteko%C3%A4ly.pdf
+(7) https://www.cs.helsinki.fi/u/floreen/tira2015syksy/sivut001-350.pdf
