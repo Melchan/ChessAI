@@ -44,7 +44,8 @@ valitettavan myöhäisessä vaiheessa ajan käytön kannalta miten olisin saanut
 jälkeen tehtävässä pelaajaa vastaan tehtävässä siirrossa. Olisin muokannut pisteytystä viimeistä valintaa tehdessä niin, että
 tutkimattomien siirtojen antama pistemäärä olisi nolla, jolloinka tutkimattomien haarojen antamaa piste bonusta ei oteta
 huomioon siirtoa tehdessä. Antamalla vakiokertoimelle c arvon nolla tämän olisi saanut toteutettua (6). Tämä olisi vaatinut 
-fixumpaa toteutusta kuin mitä minä olin käyttänyt. Esim. Muokkaamalla jokaisesta pistelaskusta oma olionsa. 
+fixumpaa toteutusta kuin mitä minä olin käyttänyt. Esim. Muokkaamalla jokaisesta pistelaskusta oma olionsa. Aloitus kirjasto 
+olisi ollut myös hyvin tärkeä, ja varmasti löytyi shredderistä. 
 
 ArrayList ja HashMap toteutukseni. Ovat tehokkuudeltaan ja muisti nälkäisyydeltään tehottomampia kuin javan standardi kirjaston 
 toteutukset. Molemmissa on toteutettu vain tähän kyseiseen tarkoitukseen tarpeelliset metodit. HashMapin toteutus käyttää
