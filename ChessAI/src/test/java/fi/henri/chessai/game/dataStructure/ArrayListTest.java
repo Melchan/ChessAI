@@ -99,19 +99,6 @@ public class ArrayListTest {
     }
     
     @Test
-    public void removeTest() {
-        for (int i = 0; i < 10; i++) {
-            list.add(i);
-        }
-        
-        list.remove(4);
-        
-        int x = list.get(list.size() - 1);
-        assertEquals(5, x);
-        assertEquals(list.size(), 6);
-    }
-    
-    @Test
     public void removePrecisionTest() {
         list.add(a);
         list.add(b);
@@ -124,9 +111,7 @@ public class ArrayListTest {
         int test1 = list.get(0);
         int test2 = list.get(1);
         
-        assertEquals(list.size(), 2);
-        assertEquals(a, test1);
-        assertEquals(b, test2);
+        assertEquals(null, list.get(3));
     }
     
     @Test

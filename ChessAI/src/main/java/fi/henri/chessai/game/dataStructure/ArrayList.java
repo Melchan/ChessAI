@@ -80,8 +80,6 @@ public class ArrayList<T> {
      */
     public void remove(int i) {
         for (int j = i; j > 0; j--) {
-            System.out.println("index is " + index);
-            System.out.println(i + " " + j);
             e[index] = null;
             index--;
         }
@@ -104,8 +102,11 @@ public class ArrayList<T> {
     private void increaseLength() {
         this.lenght = (int) Math.pow(lenght, 2);
     }
-
-    private void increaseSize() {
+    
+    /**
+     * Increases size of array inside of ArrayList.
+     */
+    public void increaseSize() {
         increaseLength();
         Object tempO = new Object[lenght];
         T[] tempE = (T[]) tempO;
@@ -118,5 +119,4 @@ public class ArrayList<T> {
     public int getArrayLenght() {
         return e.length;
     }
-   
 }

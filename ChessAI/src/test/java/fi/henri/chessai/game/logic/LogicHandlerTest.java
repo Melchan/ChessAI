@@ -21,7 +21,7 @@ public class LogicHandlerTest {
     public void setUp() {
         this.handler = new LogicHandler();
     }
-
+/*
     @Test
     public void fastGameStartToFinnishEndingToWhiteVictory() {
         assertEquals(true, handler.movePiece(52, 36));
@@ -134,9 +134,10 @@ public class LogicHandlerTest {
         assertEquals(true, handler.movePiece(58, 61));
         assertEquals(true, handler.getCheckMate());
     }
-
+*/
     @Test
     public void threeFoldRepetitionWorks() {
+        System.out.println("THREE FOLD REPETITION");
         assertEquals(true, handler.movePiece(62, 45));
         assertEquals(true, handler.movePiece(6, 21));
         assertEquals(true, handler.movePiece(45, 62));

@@ -104,14 +104,10 @@ public class CheckMateObserver {
 
         int[] k = board.indexToCoordinates(king);
         int[] a = board.indexToCoordinates(attacker);
-        if (defenders.isEmpty()) {
-            System.out.println(board.getMoveCount() + " when defender is empty");
-        }
         while (k[0] != a[0] || k[1] != a[1]) {
             int i = board.coordinatesToIndex(k);
             int size = defenders.size();
             for (int d = 0; d < size; d++) {
-                System.out.println(defenders.get(d) + " " + i);
                 if (handler.movePiece(defenders.get(d), i)) {
                     board.rollBack(1);
                     return false;

@@ -8,7 +8,8 @@ package fi.henri.chessai.game.AI;
 import fi.henri.chessai.game.AI.MoveDetector.MoveObserver;
 import fi.henri.chessai.game.logic.LogicHandler;
 import fi.henri.chessai.game.dataStructure.ArrayList;
-import java.util.HashMap;
+import fi.henri.chessai.game.dataStructure.HashMap;
+
 
 /**
  *

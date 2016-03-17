@@ -8,7 +8,7 @@ package fi.henri.chessai.game.logic.moves;
 import fi.henri.chessai.game.logic.chessBoard.ChessBoard;
 import fi.henri.chessai.game.logic.chessBoard.ChessPiece;
 import static fi.henri.chessai.game.logic.chessBoard.ChessPiece.*;
-import java.util.HashMap;
+import fi.henri.chessai.game.dataStructure.HashMap;
 
 /**
  *

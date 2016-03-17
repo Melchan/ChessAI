@@ -17,7 +17,9 @@ import static java.awt.Color.BLUE;
 import static java.awt.Color.RED;
 import static java.awt.Color.WHITE;
 import fi.henri.chessai.game.dataStructure.ArrayList;
-import java.util.HashMap;
+import fi.henri.chessai.game.dataStructure.HashMap;
+
+
 
 /**
  *
@@ -167,10 +169,8 @@ public class DrawObserver {
         for (int i = 0; i < b.length; i++) {
             if (board.boardCharToChessPiece(b[i]) == WHITEBISHOP) {
                 white = squareColor(i);
-                System.out.println(white);
             } else if (board.boardCharToChessPiece(b[i]) == BLACKBISHOP) {
                 black = squareColor(i);
-                System.out.println(black);
             }
         }
         return black == white;
@@ -178,7 +178,6 @@ public class DrawObserver {
 
     private Color squareColor(int i) {
         int[] c = board.indexToCoordinates(i);
-        System.out.println("x " + c[0] + " y " + c[1]);
         if (isBlackSquare(c)) {
             return BLACK;
         } else {
