@@ -76,7 +76,11 @@ public class Node {
     public String getState() {
         return state;
     }
-
+    /**
+     * Gives move which to use in order to get to next state in question.
+     * @param state
+     * @return move int array form.
+     */
     public int[] getMove(String state) {
         return getActionFromString(moveStates.get(state));
     }
