@@ -7,8 +7,11 @@ Löysin muutamia aikaisemmin huomaamatta jääneita ja tuhosin ne.
 
 ShredderComputerin bottia vastaan kokeilin omaa bottiani kolmella vaikeus asteella, ja huomasin muutaman alueen missä omani
 häviää. Tekoälyni on hitaampi. Todennäköisesti johtuen heikosta tavasta laskea jokaisen mahdollisen seuraavan siirron tulos. 
-ennen kuin päättää satunnaisia kokeilu polkuja. Hidastaen toimintaa turhanpaljon. Käyden saman asian pariin otteeseen läpi. 
-Turhaan. Huomasin tämän ongelman tutkiessani ongelmaa oman hahsmappini kanssa. 
+ennen kuin päättää satunnaisia kokeilu polkuja. Hidastaen toimintaa turhaan mahdollisuuksilla joita ei edes kohdata. 
+Käyden saman asian pariin otteeseen läpi. Tällä on pyritty tasoittamaan algoritmin satunnaisuutta, että peli ei tekisi väärää
+siirtoa. Huomasin tämän ongelman tutkiessani ongelmaa oman hahsmappini kanssa, että toteutuksessani nodet, jotka hakevat 
+kaikki mahdolliset seuraavat siirrot on hieman turhan tehoton. Sen lisäksi siirroissa takaisin päin paalaava toiminto 
+rullaa vain nykyistä laudan tilannetta siirto kerrallaan taaksepäin.
 
 Eli ensimmäinen ongelma omassa teko-älyssäni on itse algoritmin heikko toteutus. Oma shakki peli toteutukseni ei myöskään 
 ole tehokkain mahdollinen hidastaen algoritmin simulaatio vaihetta lisää. Toinen ongelma tulee vastaan itse algoritmissa. 
